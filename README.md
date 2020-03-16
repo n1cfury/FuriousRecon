@@ -1,9 +1,17 @@
-  ______          _                 _____                      
- |  ____|        (_)               |  __ \                     
- | |__ _   _ _ __ _  ___  _   _ ___| |__) |___  ___ ___  _ __  
- |  __| | | | '__| |/ _ \| | | / __|  _  // _ \/ __/ _ \| '_ \ 
- | |  | |_| | |  | | (_) | |_| \__ | | \ |  __| (_| (_) | | | |
- |_|   \__,_|_|  |_|\___/ \__,_|___|_|  \_\___|\___\___/|_| |_|
+
+
+ /$$$$$$$$               /$$                           /$$$$$$$                                     
+| $$_____/              |__/                          | $$__  $$                                    
+| $$   /$$   /$$ /$$$$$$ /$$ /$$$$$$ /$$   /$$ /$$$$$$| $$  \ $$ /$$$$$$  /$$$$$$$ /$$$$$$ /$$$$$$$ 
+| $$$$| $$  | $$/$$__  $| $$/$$__  $| $$  | $$/$$_____| $$$$$$$//$$__  $$/$$_____//$$__  $| $$__  $$
+| $$__| $$  | $| $$  \__| $| $$  \ $| $$  | $|  $$$$$$| $$__  $| $$$$$$$| $$     | $$  \ $| $$  \ $$
+| $$  | $$  | $| $$     | $| $$  | $| $$  | $$\____  $| $$  \ $| $$_____| $$     | $$  | $| $$  | $$
+| $$  |  $$$$$$| $$     | $|  $$$$$$|  $$$$$$//$$$$$$$| $$  | $|  $$$$$$|  $$$$$$|  $$$$$$| $$  | $$
+|__/   \______/|__/     |__/\______/ \______/|_______/|__/  |__/\_______/\_______/\______/|__/  |__/
+                                                                                                    
+                                                                                                    
+                                                                                                    
+
 
 
 ##A Bash recon script using nmap and xsltproc to create some easy to read HTML reports
@@ -31,18 +39,21 @@
 ###Running the script, and what to expect.
 
 ####Running with user privileges
+![Running as a low priv user](https://github.com/n1cfury/FuriousRecon/blob/master/images/asuser.png)
 
 ####Running with root privileges
+![Running as Root](https://github.com/n1cfury/FuriousRecon/blob/master/images/asroot.png)
 
 ####The results folder
+![The Results Folder](https://github.com/n1cfury/FuriousRecon/blob/master/images/mortyfolder.png)
 
 ####The HTML page
+![The HTML page](https://github.com/n1cfury/FuriousRecon/blob/master/images/htmlpage.png)
 
 ####The txt file
-
+![The text file](https://github.com/n1cfury/FuriousRecon/blob/master/images/textfile.png)
 
 ###ToDo's
-####	Link screenshots you uploaded in this repo.
 ####	Test the -iL argument
 ####	Add comments from the script to this README. 
 ####	Add an addiitonal argument for the full path.
