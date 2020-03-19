@@ -1,10 +1,4 @@
-
-    
-    ______           _                  ____                      
-   / ____/_  _______(_)___  __  _______/ __ \___  _________  ____ 
-  / /_  / / / / ___/ / __ \/ / / / ___/ /_/ / _ \/ ___/ __ \/ __ \
- / __/ / /_/ / /  / / /_/ / /_/ (__  ) _, _/  __/ /__/ /_/ / / / /
-/_/    \__,_/_/  /_/\____/\__,_/____/_/ |_|\___/\___/\____/_/ /_/ 
+![Banner](https://github.com/n1cfury/FuriousRecon/blob/master/images/banner.png)
                                                                   
 ##A Bash recon script using nmap and xsltproc to create some easy to read HTML reports
 
