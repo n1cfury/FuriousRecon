@@ -6,32 +6,32 @@ GRN=$'\e[1;32m'
 BLU=$'\e[1;34m'
 WTE=$'\e[0m'
 echo "";
-echo "$YLW  ================================================";	#Line 20-21 creates the working folder
-echo "$BLU[*] 	Recon script  @n1c_Fury                  [*]";	#Line 22 changes directory to the working folder
-echo "$BLU[*]	Usage: ./recon.sh <ip> <name>	         [*]";	#e.g. ./recon.sh 10.10.10.37 blocky
+echo "$YLW  ================================================";
+echo "$BLU[*] 	FuriousRecon - @n1c_Fury                 [*]";
+echo "$BLU[*]	Usage: ./recon.sh <ip> <name>	         [*]";
 echo "$BLU[*]	Use '-iL path/file' for multiple hosts   [*]";
+echo "$BLU[*]   github.com/n1cfury/FuriousRecon		 [*]";
 echo "$YLW  ================================================";
 echo "";
 date;
-echo "$WTE[*] Target folder is $YLW[!]--> $2 <--[!]";	#This will create the .txt file for posting all of your notes
-echo "$WTE[*] Notes are in ${BLU}$2-report.txt";		#The text file and html file are created instantly
-echo "$WTE[*] Scans: --> ${BLU}file:///mnt/hgfs/HTB/$2/$2-report.html. If you get a 404, modify Lines 20, 21, 22";
-echo "$WTE[*] Check the web page here: ${BLU}http://$1 "; #start manual recon of the web page if available while you wait on scans
-mkdir $2;												#1.		WORKING DIRECTORY CREATED HERE
-mkdir $2/nmap-output;									#2.		NMAP OUTPUT DIRECTORIES CREATED HERE
-cd $2;													#3.		SCRIPT CHANGES TO WORKING DIRECTORY AND STARTS WORKING
-echo "$GRN[*] Creating Report Template..."; #Creates Notes file for pasting notes in plaintext
+echo "$WTE[*] Target folder is $YLW[!]--> $2 <--[!]";
+echo "$WTE[*] Notes are in ${BLU}$2-report.txt";
+echo "$WTE[*] Access the $2-report.html to review the report";
+echo "$WTE[*] Check the web page here: ${BLU}http://$1 ";
+mkdir $2;
+mkdir $2/nmap-output;
+mkdir $2/tools;
+cd $2;
+echo "$GRN[*] Creating Report Template...";
 echo "[+] IP/Host: $1 - $2" >> $2-report.txt;
 echo "[+] TCP/UDP:" >> $2-report.txt;
 echo "	  * TCP: " >> $2-report.txt;
 echo " 	  * UDP: " >> $2-report.txt;
 echo "[+] MisConfig (misc. configs)" >> $2-report.txt;
 echo "[+] SSH Keys" >> $2-report.txt;
-echo "[+] Whatweb" >> $2-report.txt;
-echo "[+] Nikto" >> $2-report.txt;
-echo "[+] Web Dirs (robots.txt, dirb,etc)" >> $2-report.txt;
+echo "[+] Web Recon (dir,nikto,whatweb,etc)" >> $2-report.txt;
 echo "[+] OS Enumeration" >> $2-report.txt;
-echo "[+] Users" >> $2-report.txt;
+echo "[+] Users & Permissions" >> $2-report.txt;
 echo "[+] User Permissions" >> $2-report.txt;
 echo "[+] Scheduled Tasks/Cron Jobs" >> $2-report.txt;
 echo "[+] Shares" >> $2-report.txt;
@@ -48,9 +48,10 @@ echo "[+] Effective Exploits" >> $2-report.txt;
 echo "[+] Low Privilege Shell" >> $2-report.txt;
 echo "[+] Root Shell" >> $2-report.txt;
 echo "[+] proof.txt" >> $2-report.txt;
-echo "[+] Hashes" >> $2-report.txt;
+echo "[+] Post Exploitation" >> $2-report.txt;
+echo "[+] Metasploit Findings" >> $2-report.txt;
 echo "[+] Screenshots:" >> $2-report.txt;
-echo "$GRN[*] Creating HTML report file..."; 				#Creates HTML file in the directory you specified
+echo "$GRN[*] Creating HTML report file...";
 echo "<!DOCTYPE html>" > $2-report.html;
 echo "<html>" >> $2-report.html;
 echo "<title>[*] Host Report for $1 - $2 [*]</title> " >> $2-report.html;
@@ -69,7 +70,7 @@ echo "</h3>" >> $2-report.html;
 echo "</nav>" >> $2-report.html;
 echo "</body>" >> $2-report.html;
 echo "</html>" >> $2-report.html;
-echo "$YLW[*] Starting scans....";  		#Running nmap scans: Output is saved to nmap-output in the sub directory of the working folder
+echo "$YLW[*] Starting scans....";
 echo "$WTE[1] Scanning top 1000 Ports";
 nmap -Pn -F --top-ports 1000 --open -v -v -oA nmap-output/top1k $1 1> /dev/null;
 sleep 5;
