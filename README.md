@@ -43,4 +43,5 @@ The txt file
 ####	Test the -iL argument
 ####	Add comments from the script to this README. 
 ####	Add an addiitonal argument for the full path.
-####	Add additional features: (gobuster, nikto, etc).
+####	Modify the script to create the txt file after the scans finish.
+####	Add commands to parse nmap port information and append to the .txt file.
