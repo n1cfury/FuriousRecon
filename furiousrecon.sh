@@ -10,7 +10,7 @@ echo "$YLW  ================================================";
 echo "$BLU[*] 	FuriousRecon - @n1c_Fury                 [*]";
 echo "$BLU[*]	Usage: ./recon.sh <ip> <name>	         [*]";
 echo "$BLU[*]	Use '-iL path/file' for multiple hosts   [*]";
-echo "$BLU[*]   github.com/n1cfury/FuriousRecon		 [*]";
+echo "$BLU[*]   github.com/n1cfury/FuriousRecon			 [*]";
 echo "$YLW  ================================================";
 echo "";
 date;
