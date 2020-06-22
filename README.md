@@ -45,3 +45,4 @@ The txt file
 ####	Add an addiitonal argument for the full path.
 ####	Modify the script to create the txt file after the scans finish.
 ####	Add commands to parse nmap port information and append to the .txt file.
+####	Figure out threading and get the script to run multiple windows for other tools (nikto, dirb, etc)
