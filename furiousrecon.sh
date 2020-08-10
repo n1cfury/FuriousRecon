@@ -83,6 +83,8 @@ echo "[+] Gaining a Foothold" >> $2-report.txt;
 echo "[+] Foothold to Shell" >> $2-report.txt;
 echo "[+] Privilege Escalation to Root" >> $2-report.txt;
 echo "[+] proof.txt" >> $2-report.txt;
+echo "user: " >> $2-report.txt;
+echo "root: " >> $2-report.txt;
 echo "[+] Post Exploitation" >> $2-report.txt;
 echo "$YLW[!] Recon Completed.";
 echo "$BLU ";
