@@ -3,14 +3,15 @@
 ##A Bash recon script using nmap and xsltproc to create some easy to read HTML reports
 
 ###What does this do?
-#### This bash script does some of the initial recon of a given target and creates a folder to organize your notes and findings. I used this to help with the recon portion of attacking boxes in labs (e.g. HackTheBox, OSCP, )
+#### This bash script does runs some nmap scans, creates a web page to easily view them from, and creates a folder to organize your findings. I used this to help with the recon portion of attacking boxes in labs (e.g. HackTheBox, OSCP)
 
 ###How does this work?
 
-## Usage: ./furiousrecon <ip address> <foldername>
-#### Requirements: nmap, xsltproc, a browser, and any OS with bash.	
+## Usage: ./furiousrecon <target> <foldername>
+#### Requirements: nmap, xsltproc, a browser, and any OS with bash. Sudo may be needed for the Vulnerability scan.
 #### This will also work on subnets, but will take longer.
 #### Most effective against single boxes (typically =< 60 min)
+#### 
 
 
 
@@ -41,8 +42,7 @@ The txt file
 
 ###ToDo's
 ####	Test the -iL argument
-####	Add comments from the script to this README. 
 ####	Add an addiitonal argument for the full path.
-####	Modify the script to create the txt file after the scans finish.
-####	Add commands to parse nmap port information and append to the .txt file.
 ####	Figure out threading and get the script to run multiple windows for other tools (nikto, dirb, etc)
+####	Automate entering the output into Cherry Tree?
+####	Port this over to Python or some other language
