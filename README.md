@@ -1,41 +1,29 @@
-# FurousRecon
-
 ![Banner](https://github.com/n1cfury/FuriousRecon/blob/master/images/banner.png)
+                                                                  
+##A Bash recon script using nmap and xsltproc to create some easy to read HTML reports
 
-## Scan a box, organize your findings, save time on reporting.
+###What does this do?
+#### This bash script does runs some nmap scans, creates a web page to easily view them from, and creates a folder to organize your findings. I used this to help with the recon portion of attacking boxes in labs (e.g. HackTheBox, OSCP)
 
-## **Disclaimer** 
-I have used this to help with the recon and reporting portion of attacking boxes in labs on various platforms. This can be used in production environments under the caveat you are very comfortable with nmap and modify the scans as needed.
-
-## What does this do?
-When applying the arguments, this script runs multiple nmap scans, creates a web page to easily view them from, and creates multiple folders to organize your findings. 
-
-## Why did I make this?
-* I wanted to get more comfortable with scripting and make a useful tool
-* I have a tendency to want to organize my notes in a particular fashion
-* Coming back to a box later is much easier to follow what I've done
-* This makes reporting easier
-
-### How does this work?
+###How does this work?
 
 ## Usage: ./furiousrecon <target> <foldername>
+#### Requirements: nmap, xsltproc, a browser, and any OS with bash. Sudo may be needed for the Vulnerability scan.
+#### This will also work on subnets, but will take longer.
+#### Most effective against single boxes (typically =< 60 min)
+#### 
 
-## Requirements 
-* nmap
-* xsltproc
-* A web browser
-* A non-Windows Operating System
-* bash shell
-* sudo
 
-## Features
-* Using the -iL switch for the argument will let you scan a list of hosts
-* This will also work on subnets, but will take longer.
-* Most effective against single hosts (typically =< 60 min)
-* Creates individual subfolders to organize work on the target host
-* Creates a notes.txt file to outline important findings
 
-## Running the script, and what to expect.
+###Organize my notes, how so?
+####In addition to running the nmap commands, this also creates a folder for all the command output consisting of: 
+
+####The folder you specified based on your target
+####The output from the nmap commands
+####A notes txt file you can add info on your findings to.
+####The script creates an HTML file with links to the various nmap scans ran.
+
+###Running the script, and what to expect.
 
 Running with user privileges
 ![Running as a low priv user](https://github.com/n1cfury/FuriousRecon/blob/master/images/asuser.png)
@@ -52,7 +40,9 @@ The HTML page
 The txt file
 ![The text file](https://github.com/n1cfury/FuriousRecon/blob/master/images/textfile.png)
 
-# ToDo
-* Port over to another language (e.g. python)
-* Figure out threading to run additional tools
-* Screenshots for ports allowing http
+###ToDo's
+####	Test the -iL argument
+####	Add an addiitonal argument for the full path.
+####	Figure out threading and get the script to run multiple windows for other tools (nikto, dirb, etc)
+####	Automate entering the output into Cherry Tree?
+####	Port this over to Python or some other language
