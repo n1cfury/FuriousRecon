@@ -8,22 +8,26 @@
 ###How does this work?
 
 ## Usage: ./furiousrecon <target> <foldername>
-#### Requirements: nmap, xsltproc, a browser, and any OS with bash. Sudo may be needed for the Vulnerability scan.
+
+### Requirements: 
+  - nmap
+  - xsltproc
+  - Web Browser
+  - Linux/Mac OS
+  - Sudo (in some cases)
+  
 #### This will also work on subnets, but will take longer.
 #### Most effective against single boxes (typically =< 60 min)
-#### 
 
+### Organizes my notes, how so?
+### Creates a folder for all the command output consisting of: 
 
+- Target name
+- The output from the nmap commands
+- A txt file to document findings.
+- An HTML file to view nmap results and findings
 
-###Organize my notes, how so?
-####In addition to running the nmap commands, this also creates a folder for all the command output consisting of: 
-
-####The folder you specified based on your target
-####The output from the nmap commands
-####A notes txt file you can add info on your findings to.
-####The script creates an HTML file with links to the various nmap scans ran.
-
-###Running the script, and what to expect.
+### Running the script, and what to expect.
 
 Running with user privileges
 ![Running as a low priv user](https://github.com/n1cfury/FuriousRecon/blob/master/images/asuser.png)
@@ -40,9 +44,8 @@ The HTML page
 The txt file
 ![The text file](https://github.com/n1cfury/FuriousRecon/blob/master/images/textfile.png)
 
-###ToDo's
-####	Test the -iL argument
-####	Add an addiitonal argument for the full path.
-####	Figure out threading and get the script to run multiple windows for other tools (nikto, dirb, etc)
-####	Automate entering the output into Cherry Tree?
-####	Port this over to Python or some other language
+### ToDo's
+- Test the -iL argument
+- Add an addiitonal argument for the full path.
+- Figure out threading and get the script to run multiple windows for other tools (nikto, dirb, etc)
+- Port over to Python
