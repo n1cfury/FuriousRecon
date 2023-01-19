@@ -12,7 +12,7 @@
 ### Requirements: 
   - nmap
   - xsltproc
-  - Web Browser
+  - Any web browser
   - Linux/Mac OS
   - Sudo (in some cases)
   
@@ -25,7 +25,10 @@
 - Target name
 - The output from the nmap commands
 - A txt file to document findings.
-- An HTML file to view nmap results and findings
+- HTML files to view nmap results from each scan
+- Organizes findings: images (for screenshots), tools used, nmap scans
+
+
 
 ### Running the script, and what to expect.
 
@@ -46,6 +49,6 @@ The txt file
 
 ### ToDo's
 - Test the -iL argument
-- Add an addiitonal argument for the full path.
+- Add an additional argument for the full path.
 - Figure out threading and get the script to run multiple windows for other tools (nikto, dirb, etc)
 - Port over to Python
