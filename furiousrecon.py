@@ -1,7 +1,5 @@
 '''
 Furious Recon Todos
-    Make a function for the banner (lines 9-14)
-    Make a function for the usage
     Make working (root) folder e.g. target name
     Make subfolders (images, tools, nmap-output) 
     Create HTML page inside working folder (lines 25-42)
@@ -21,12 +19,13 @@ python-nmap, os, lxml, glob
 '''
 
 def banner():
-    print ("================================================")
+    print ("")
+    print ("[*] ================================================ [*]")
     print ("[*]	FuriousRecon - @n1c_Fury                 [*]")
     print ("[*]	Usage: ./recon.sh <ip> <name>	         [*]")
     print ("[*]	Use '-iL path/file' for multiple hosts   [*]")
     print ("[*]	github.com/n1cfury/FuriousRecon          [*]")
-    print ("================================================")
+    print ("[*] ================================================ [*]")
     
 def usage():
     print ("Usage: ./furiousrecon.sh <ip> <name>")
