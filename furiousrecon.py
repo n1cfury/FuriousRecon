@@ -1,8 +1,9 @@
+#!/usr/bin/env python
 
 import os
 import nmap
 import lxml
-import argv from sys
+from sys import argv
 
 '''
 Furious Recon Todos
@@ -12,19 +13,25 @@ Furious Recon Todos
     Nmap scans (lines 45-67)
         foreach [scan,5 sec delay,xsltproc]
     Create Report txt file (lines 68-87)
-    
+
 What are the most important functions
     Create working folders for your target
     Create html page for the report
     create txt file for report notes
     Run multiple nmap scans (output all formats)
-    
+
 Modules needed
 nmap, os, lxml, glob
 '''
 #Variables
-target = [sys.argv(1)]
-folder = [sys.argv(2)]
+thost = (sys.argv(1))
+tfolder = (sys.argv(2))
+
+#Subdirectories
+sub1='nmap-output'
+sub2='images'
+sub3='tools'
+subfolders = [sub1,sub2,sub3]
 
 #Nmap scan arguments
 ipc='-sC -sV -oA nmap-output/ippsec'
@@ -52,16 +59,20 @@ def usage(): #Prints usage of the tool
     
 def recon() #Runs nmap scans
     for scan in scans:
-        nmap.PortScanner(target, arguments=scan)
+        nmap.PortScanner(thost, arguments=scan)
 
+def staging() #Make target directory and subdirectories
+    if not os.path.exists(folder):
+        os.makedirs(folder)
+        for sub in subfolders:
+            os.makedirs(sub)
 
 if __name__ == "__main__":
     banner()
     if len(sys.argv) < 3:
         usage()
     else:
+        staging()
         scans(target, folder)
         
 # end main
-    
-    
