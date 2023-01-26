@@ -1,9 +1,10 @@
 #!/usr/bin/env python
+#FuriousRecon (python port)
 
 import os
 import nmap
 import lxml
-from sys import argv
+import sys
 
 '''
 Furious Recon Todos
@@ -56,23 +57,31 @@ def usage(): #Prints usage of the tool
     print ("Usage: ./furiousrecon.sh <ip> <name>")
     print ("example: ./furiousrecon 192.168.5.5 targetfolder ")
     sys.exit()
-    
-def recon() #Runs nmap scans
+
+def staging(): #Make target directory and subdirectories
+        if not os.path.exists(tfolder):
+        os.makedirs(tfolder)
+        for sub in subfolders:
+            os.makedirs(sub)
+
+def recon(): #Runs nmap scans
     for scan in scans:
         nmap.PortScanner(thost, arguments=scan)
 
-def staging() #Make target directory and subdirectories
-    if not os.path.exists(folder):
-        os.makedirs(folder)
-        for sub in subfolders:
-            os.makedirs(sub)
+
 
 if __name__ == "__main__":
     banner()
     if len(sys.argv) < 3:
+        print("Not enough arguments. Try again")
+        print ("")
+        usage()
+    if len(sys.argv) > 3:
+        print ("Too many arguments. Try again")
+        print ("")
         usage()
     else:
         staging()
-        scans(target, folder)
+        recon(thost, tfolder)
         
 # end main
