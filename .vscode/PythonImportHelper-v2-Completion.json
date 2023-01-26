@@ -9,15 +9,6 @@
         "documentation": {}
     },
     {
-        "label": "nmap",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "nmap",
-        "description": "nmap",
-        "detail": "nmap",
-        "documentation": {}
-    },
-    {
         "label": "lxml",
         "kind": 6,
         "isExtraImport": true,
@@ -54,6 +45,33 @@
         "documentation": {}
     },
     {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "recon",
+        "kind": 2,
+        "importPath": "furiousrecon",
+        "description": "furiousrecon",
+        "peekOfCode": "def recon(): #Runs nmap scans\n    for scan in scans:\n        os.system(scan + ' ' + thost)\n        time.sleep(5)\nhtml_code = \"\"\"\n<!DOCTYPE html>\n<html>\" \n<title>[*] Host Report for %s - %s [*]</title> % \n<body>\n<h2 align=\"center\"><b>[*] $2 - $1 [*]</h></bold>",
+        "detail": "furiousrecon",
+        "documentation": {}
+    },
+    {
+        "label": "staging",
+        "kind": 2,
+        "importPath": "furiousrecon",
+        "description": "furiousrecon",
+        "peekOfCode": "def staging(): #Make target folders and files, and change directory into target folder\n    os.mkdir(tfolder)\n    os.mkdir(tfolder + '/' + 'nmap-output')\n    os.mkdir(tfolder + '/' + 'images')\n    os.mkdir(tfolder + '/' + 'tools')\n    os.chdir(tfolder)\n    file = open(tfolder + '/' + \"index.html\", \"w\")\n    file.write(html_code)\n    file.close()\n    print (\"HTML page created: \")",
+        "detail": "furiousrecon",
+        "documentation": {}
+    },
+    {
         "label": "timetracker",
         "kind": 2,
         "importPath": "furiousrecon",
@@ -76,25 +94,7 @@
         "kind": 2,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "def usage(): #Prints usage of the tool\n    print (\"Usage: ./furiousrecon.sh <ip> <name>\")\n    print (\"example: ./furiousrecon 192.168.5.5 targetfolder \")\n    sys.exit()\n#Essential functions\ndef staging(): #Make target folders and files, and change directory into target folder\n    os.mkdir(tfolder)\n    os.mkdir(tfolder + '/' + 'nmap-output')\n    os.mkdir(tfolder + '/' + 'images')\n    os.mkdir(tfolder + '/' + 'tools')",
-        "detail": "furiousrecon",
-        "documentation": {}
-    },
-    {
-        "label": "staging",
-        "kind": 2,
-        "importPath": "furiousrecon",
-        "description": "furiousrecon",
-        "peekOfCode": "def staging(): #Make target folders and files, and change directory into target folder\n    os.mkdir(tfolder)\n    os.mkdir(tfolder + '/' + 'nmap-output')\n    os.mkdir(tfolder + '/' + 'images')\n    os.mkdir(tfolder + '/' + 'tools')\n    os.chdir(tfolder)\n    file = open(tfolder + '/' + \"index.html\", \"w\")\n    file.write(html_code)\n    file.close()\n    print (\"HTML page created: \")",
-        "detail": "furiousrecon",
-        "documentation": {}
-    },
-    {
-        "label": "recon",
-        "kind": 2,
-        "importPath": "furiousrecon",
-        "description": "furiousrecon",
-        "peekOfCode": "def recon(): #Runs nmap scans\n    for scan in scans:\n        nmap.PortScanner(thost, arguments=scan)\nif __name__ == \"__main__\":\n    banner()\n    if len(sys.argv) < 3:\n        print(\"Not enough arguments. Try again\")\n        usage()\n    if len(sys.argv) > 3:\n        print (\"Too many arguments. Try again\")",
+        "peekOfCode": "def usage(): #Prints usage of the tool\n    print (\"Usage: ./furiousrecon.sh <ip> <name>\")\n    print (\"example: ./furiousrecon 192.168.5.5 targetfolder \")\n    sys.exit()\n#Essential functions\nif __name__ == \"__main__\":\n    banner()\n    if len(sys.argv) < 3:\n        print(\"Not enough arguments. Try again\")\n        usage()",
         "detail": "furiousrecon",
         "documentation": {}
     },
@@ -103,7 +103,7 @@
         "kind": 5,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "thost = (sys.argv(1))\ntfolder = (sys.argv(2))\n#Nmap scans\nipc='-sC -sV -oA nmap-output/ippsec'\nall='-Pn -p- -v -v --open -oA nmap-output/allports'\nsvc='--open -O -sV -T4 -A -v -v -Pn -oA nmap-output/service'\nenm='-Pn -T4 -A -v -v --script=*vuln* -oA nmap-output/vulns'\nvln='-Pn -T4 -v -v --script=*enum* -oA nmap-output/enum'\nudp='-Pn -T4 -sS -sU -v -v -oA nmap-output/udp'\nscans = [ipc,all,svc,enm,vln]",
+        "peekOfCode": "thost = (sys.argv(1))\ntfolder = (sys.argv(2))\n#Nmap scans\nipc='nmap -sC -sV -oA nmap-output/ippsec'\nall='nmap -Pn -p- -v -v --open -oA nmap-output/allports'\nsvc='nmap --open -O -sV -T4 -A -v -v -Pn -oA nmap-output/service'\nenm='nmap -Pn -T4 -A -v -v --script=*vuln* -oA nmap-output/vulns'\nvln='nmap -Pn -T4 -v -v --script=*enum* -oA nmap-output/enum'\nudp='nmap -Pn -T4 -sS -sU -v -v -oA nmap-output/udp'\nscans = [ipc,all,svc,enm,vln,udp]",
         "detail": "furiousrecon",
         "documentation": {}
     },
@@ -112,7 +112,7 @@
         "kind": 5,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "tfolder = (sys.argv(2))\n#Nmap scans\nipc='-sC -sV -oA nmap-output/ippsec'\nall='-Pn -p- -v -v --open -oA nmap-output/allports'\nsvc='--open -O -sV -T4 -A -v -v -Pn -oA nmap-output/service'\nenm='-Pn -T4 -A -v -v --script=*vuln* -oA nmap-output/vulns'\nvln='-Pn -T4 -v -v --script=*enum* -oA nmap-output/enum'\nudp='-Pn -T4 -sS -sU -v -v -oA nmap-output/udp'\nscans = [ipc,all,svc,enm,vln]\nhtml_code = \"\"\"",
+        "peekOfCode": "tfolder = (sys.argv(2))\n#Nmap scans\nipc='nmap -sC -sV -oA nmap-output/ippsec'\nall='nmap -Pn -p- -v -v --open -oA nmap-output/allports'\nsvc='nmap --open -O -sV -T4 -A -v -v -Pn -oA nmap-output/service'\nenm='nmap -Pn -T4 -A -v -v --script=*vuln* -oA nmap-output/vulns'\nvln='nmap -Pn -T4 -v -v --script=*enum* -oA nmap-output/enum'\nudp='nmap -Pn -T4 -sS -sU -v -v -oA nmap-output/udp'\nscans = [ipc,all,svc,enm,vln,udp]\ndef recon(): #Runs nmap scans",
         "detail": "furiousrecon",
         "documentation": {}
     },
@@ -121,7 +121,7 @@
         "kind": 5,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "scans = [ipc,all,svc,enm,vln]\nhtml_code = \"\"\"\n<!DOCTYPE html>\n<html>\" \n<title>[*] Host Report for %s - %s [*]</title> % \n<body>\n<h2 align=\"center\"><b>[*] $2 - $1 [*]</h></bold>\n<nav>\n<h3 align=\"center\">\n<a href=\"nmap-output/ippsec.html\" target=\"iframe_a\">IppSec</a>",
+        "peekOfCode": "scans = [ipc,all,svc,enm,vln,udp]\ndef recon(): #Runs nmap scans\n    for scan in scans:\n        os.system(scan + ' ' + thost)\n        time.sleep(5)\nhtml_code = \"\"\"\n<!DOCTYPE html>\n<html>\" \n<title>[*] Host Report for %s - %s [*]</title> % \n<body>",
         "detail": "furiousrecon",
         "documentation": {}
     },

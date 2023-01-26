@@ -4,15 +4,15 @@
 #
 
 import os
-import nmap
 import lxml
 import sys
 import glob
 import datetime
+import time
 
 '''
 Furious Recon Todos
-    Nmap scans (lines 45-67)
+
         foreach [scan,5 sec delay,xsltproc]
     Create Report txt file (lines 68-87)
 
@@ -30,7 +30,7 @@ Order of Operations (from the bash script)
     change directory into target folder
     Create HTML file
     Run 6 Nmap scans (output all formats)
-    Create notes file 
+    Create notes file
         include target/ip name in the first line
         Grab tcp ports from allports, sort in order and append to TCP line
         Grab udp ports from udp scan, sort in order and append to UDP line
@@ -44,13 +44,18 @@ thost = (sys.argv(1))
 tfolder = (sys.argv(2))
 
 #Nmap scans
-ipc='-sC -sV -oA nmap-output/ippsec'
-all='-Pn -p- -v -v --open -oA nmap-output/allports'
-svc='--open -O -sV -T4 -A -v -v -Pn -oA nmap-output/service'
-enm='-Pn -T4 -A -v -v --script=*vuln* -oA nmap-output/vulns'
-vln='-Pn -T4 -v -v --script=*enum* -oA nmap-output/enum'
-udp='-Pn -T4 -sS -sU -v -v -oA nmap-output/udp'
-scans = [ipc,all,svc,enm,vln]
+ipc='nmap -sC -sV -oA nmap-output/ippsec'
+all='nmap -Pn -p- -v -v --open -oA nmap-output/allports'
+svc='nmap --open -O -sV -T4 -A -v -v -Pn -oA nmap-output/service'
+enm='nmap -Pn -T4 -A -v -v --script=*vuln* -oA nmap-output/vulns'
+vln='nmap -Pn -T4 -v -v --script=*enum* -oA nmap-output/enum'
+udp='nmap -Pn -T4 -sS -sU -v -v -oA nmap-output/udp'
+scans = [ipc,all,svc,enm,vln,udp]
+
+def recon(): #Runs nmap scans
+    for scan in scans:
+        os.system(scan + ' ' + thost)
+        time.sleep(5)
 
 html_code = """
 <!DOCTYPE html>
@@ -91,6 +96,18 @@ user:
 root: 
 [+] Post Exploitation
 '''
+def staging(): #Make target folders and files, and change directory into target folder
+    os.mkdir(tfolder)
+    os.mkdir(tfolder + '/' + 'nmap-output')
+    os.mkdir(tfolder + '/' + 'images')
+    os.mkdir(tfolder + '/' + 'tools')
+    os.chdir(tfolder)
+    file = open(tfolder + '/' + "index.html", "w")
+    file.write(html_code)
+    file.close()
+    print ("HTML page created: ")
+    print("Current working directory is: " + os.getcwd())
+
 
 #Administrative functions. 
 def timetracker(): #Announces date/time at the start and finish of this script
@@ -114,21 +131,8 @@ def usage(): #Prints usage of the tool
     sys.exit()
 
 #Essential functions
-def staging(): #Make target folders and files, and change directory into target folder
-    os.mkdir(tfolder)
-    os.mkdir(tfolder + '/' + 'nmap-output')
-    os.mkdir(tfolder + '/' + 'images')
-    os.mkdir(tfolder + '/' + 'tools')
-    os.chdir(tfolder)
-    file = open(tfolder + '/' + "index.html", "w")
-    file.write(html_code)
-    file.close()
-    print ("HTML page created: ")
-    print("Current working directory is: " + os.getcwd())
 
-def recon(): #Runs nmap scans
-    for scan in scans:
-        nmap.PortScanner(thost, arguments=scan)
+
 
 
 
@@ -143,7 +147,7 @@ if __name__ == "__main__":
     else:
         timetracker()
         staging()
-        recon(thost, tfolder)
+        recon()
         print("")
         print ("Scans completed")
         print (" |) --- Happy Hunting! ---> ")
