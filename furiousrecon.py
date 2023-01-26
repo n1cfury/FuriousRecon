@@ -12,7 +12,6 @@ import time
 
 '''
 Furious Recon Todos
-
         foreach [scan,5 sec delay,xsltproc]
     Create Report txt file (lines 68-87)
 
@@ -56,6 +55,8 @@ def recon(): #Runs nmap scans
     for scan in scans:
         os.system(scan + ' ' + thost)
         time.sleep(5)
+        os.system(f"xsltproc -o {nmap-output}/.html your_xsl_file.xsl {xml_file}")
+
 
 html_code = """
 <!DOCTYPE html>

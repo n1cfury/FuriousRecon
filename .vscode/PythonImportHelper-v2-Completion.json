@@ -58,7 +58,7 @@
         "kind": 2,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "def recon(): #Runs nmap scans\n    for scan in scans:\n        os.system(scan + ' ' + thost)\n        time.sleep(5)\nhtml_code = \"\"\"\n<!DOCTYPE html>\n<html>\" \n<title>[*] Host Report for %s - %s [*]</title> % \n<body>\n<h2 align=\"center\"><b>[*] $2 - $1 [*]</h></bold>",
+        "peekOfCode": "def recon(): #Runs nmap scans\n    for scan in scans:\n        os.system(scan + ' ' + thost)\n        time.sleep(5)\n        os.system(f\"xsltproc -o {nmap-output}/.html your_xsl_file.xsl {xml_file}\")\nhtml_code = \"\"\"\n<!DOCTYPE html>\n<html>\" \n<title>[*] Host Report for %s - %s [*]</title> % \n<body>",
         "detail": "furiousrecon",
         "documentation": {}
     },
@@ -121,7 +121,7 @@
         "kind": 5,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "scans = [ipc,all,svc,enm,vln,udp]\ndef recon(): #Runs nmap scans\n    for scan in scans:\n        os.system(scan + ' ' + thost)\n        time.sleep(5)\nhtml_code = \"\"\"\n<!DOCTYPE html>\n<html>\" \n<title>[*] Host Report for %s - %s [*]</title> % \n<body>",
+        "peekOfCode": "scans = [ipc,all,svc,enm,vln,udp]\ndef recon(): #Runs nmap scans\n    for scan in scans:\n        os.system(scan + ' ' + thost)\n        time.sleep(5)\n        os.system(f\"xsltproc -o {nmap-output}/.html your_xsl_file.xsl {xml_file}\")\nhtml_code = \"\"\"\n<!DOCTYPE html>\n<html>\" \n<title>[*] Host Report for %s - %s [*]</title> % ",
         "detail": "furiousrecon",
         "documentation": {}
     },
