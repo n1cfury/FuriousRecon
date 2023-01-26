@@ -12,7 +12,6 @@ import datetime
 
 '''
 Furious Recon Todos
-    Make working (root) folder e.g. target name
     Nmap scans (lines 45-67)
         foreach [scan,5 sec delay,xsltproc]
     Create Report txt file (lines 68-87)
@@ -92,6 +91,7 @@ user:
 root: 
 [+] Post Exploitation
 '''
+
 #Administrative functions. 
 def timetracker(): #Announces date/time at the start and finish of this script
     now = datetime.datetime.now()
@@ -120,6 +120,10 @@ def staging(): #Make target folders and files, and change directory into target 
     os.mkdir(tfolder + '/' + 'images')
     os.mkdir(tfolder + '/' + 'tools')
     os.chdir(tfolder)
+    file = open(tfolder + '/' + "index.html", "w")
+    file.write(html_code)
+    file.close()
+    print ("HTML page created: ")
     print("Current working directory is: " + os.getcwd())
 
 def recon(): #Runs nmap scans
@@ -137,6 +141,7 @@ if __name__ == "__main__":
         print ("Too many arguments. Try again")
         usage()
     else:
+        timetracker()
         staging()
         recon(thost, tfolder)
         print("")

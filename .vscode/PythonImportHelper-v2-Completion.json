@@ -85,7 +85,7 @@
         "kind": 2,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "def staging(): #Make target folders and files, and change directory into target folder\n    os.mkdir(tfolder)\n    os.mkdir(tfolder + '/' + 'nmap-output')\n    os.mkdir(tfolder + '/' + 'images')\n    os.mkdir(tfolder + '/' + 'tools')\n    os.chdir(tfolder)\n    print(\"Current working directory is: \" + os.getcwd())\ndef recon(): #Runs nmap scans\n    for scan in scans:\n        nmap.PortScanner(thost, arguments=scan)",
+        "peekOfCode": "def staging(): #Make target folders and files, and change directory into target folder\n    os.mkdir(tfolder)\n    os.mkdir(tfolder + '/' + 'nmap-output')\n    os.mkdir(tfolder + '/' + 'images')\n    os.mkdir(tfolder + '/' + 'tools')\n    os.chdir(tfolder)\n    file = open(tfolder + '/' + \"index.html\", \"w\")\n    file.write(html_code)\n    file.close()\n    print (\"HTML page created: \")",
         "detail": "furiousrecon",
         "documentation": {}
     },
