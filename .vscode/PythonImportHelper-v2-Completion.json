@@ -9,15 +9,6 @@
         "documentation": {}
     },
     {
-        "label": "lxml",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "lxml",
-        "description": "lxml",
-        "detail": "lxml",
-        "documentation": {}
-    },
-    {
         "label": "sys",
         "kind": 6,
         "isExtraImport": true,
@@ -94,7 +85,7 @@
         "kind": 2,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "def usage(): #Prints usage of the tool\n    print (\"Usage: ./furiousrecon.sh <ip> <name>\")\n    print (\"example: ./furiousrecon 192.168.5.5 targetfolder \")\n    sys.exit()\n#Essential functions\nif __name__ == \"__main__\":\n    banner()\n    if len(sys.argv) < 3:\n        print(\"Not enough arguments. Try again\")\n        usage()",
+        "peekOfCode": "def usage(): #Prints usage of the tool\n    print (\"Usage: ./furiousrecon.sh <ip> <name>\")\n    print (\"example: ./furiousrecon 192.168.5.5 targetfolder \")\n    sys.exit()\nif __name__ == \"__main__\":\n    banner()\n    if len(sys.argv) < 3:\n        print(\"Not enough arguments. Try again\")\n        usage()\n    if len(sys.argv) > 3:",
         "detail": "furiousrecon",
         "documentation": {}
     },

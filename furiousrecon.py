@@ -1,40 +1,36 @@
 #!/usr/bin/env python
-#FuriousRecon (python port)
-# Created by n1cFury
-#
 
 import os
-import lxml
 import sys
 import glob
 import datetime
 import time
 
 '''
-Furious Recon Todos
-        foreach [scan,5 sec delay,xsltproc]
-    Create Report txt file (lines 68-87)
+    Furious Recon Todos
+            foreach [scan,5 sec delay,xsltproc]
+        Create Report txt file (lines 68-87)
 
-What are the most important functions
-    Create working folders for your target
-    Create html page for the report
-    create txt file for report notes (appending ports and name/ip of target)
-    Run multiple nmap scans (output all formats)
-    
-Order of Operations (from the bash script)
-    Print the banner
-    Announce start date/time
-    Make the target folder(arg 2)
-    Create subfolders in target folder (tools, images, nmap-output)
-    change directory into target folder
-    Create HTML file
-    Run 6 Nmap scans (output all formats)
-    Create notes file
-        include target/ip name in the first line
-        Grab tcp ports from allports, sort in order and append to TCP line
-        Grab udp ports from udp scan, sort in order and append to UDP line
-        Create rest of the text file
-    Announce date/time (finish)
+    What are the most important functions
+        Create working folders for your target
+        Create html page for the report
+        create txt file for report notes (appending ports and name/ip of target)
+        Run multiple nmap scans (output all formats)
+        
+    Order of Operations (from the bash script)
+        Print the banner
+        Announce start date/time
+        Make the target folder(arg 2)
+        Create subfolders in target folder (tools, images, nmap-output)
+        change directory into target folder
+        Create HTML file
+        Run 6 Nmap scans (output all formats)
+        Create notes file
+            include target/ip name in the first line
+            Grab tcp ports from allports, sort in order and append to TCP line
+            Grab udp ports from udp scan, sort in order and append to UDP line
+            Create rest of the text file
+        Announce date/time (finish)
         
 '''
 
@@ -56,7 +52,6 @@ def recon(): #Runs nmap scans
         os.system(scan + ' ' + thost)
         time.sleep(5)
         os.system(f"xsltproc -o {nmap-output}/.html your_xsl_file.xsl {xml_file}")
-
 
 html_code = """
 <!DOCTYPE html>
@@ -130,10 +125,6 @@ def usage(): #Prints usage of the tool
     print ("Usage: ./furiousrecon.sh <ip> <name>")
     print ("example: ./furiousrecon 192.168.5.5 targetfolder ")
     sys.exit()
-
-#Essential functions
-
-
 
 
 
