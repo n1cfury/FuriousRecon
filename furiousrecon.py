@@ -1,11 +1,14 @@
 #!/usr/bin/env python
 #FuriousRecon (python port)
+# Created by n1cFury
+#
 
 import os
 import nmap
 import lxml
 import sys
 import glob
+import datetime
 
 '''
 Furious Recon Todos
@@ -17,10 +20,26 @@ Furious Recon Todos
 What are the most important functions
     Create working folders for your target
     Create html page for the report
-    create txt file for report notes
+    create txt file for report notes (appending ports and name/ip of target)
     Run multiple nmap scans (output all formats)
-
+    
+Order of Operations (from the bash script)
+    Print the banner
+    Announce start date/time
+    Make the target folder(arg 2)
+    Create subfolders in target folder (tools, images, nmap-output)
+    change directory into target folder
+    Create HTML file
+    Run 6 Nmap scans (output all formats)
+    Create notes file 
+        include target/ip name in the first line
+        Grab tcp ports from allports, sort in order and append to TCP line
+        Grab udp ports from udp scan, sort in order and append to UDP line
+        Create rest of the text file
+    Announce date/time (finish)
+        
 '''
+
 #Variables
 thost = (sys.argv(1))
 tfolder = (sys.argv(2))
@@ -31,7 +50,7 @@ sub2='images'
 sub3='tools'
 subfolders = [sub1,sub2,sub3]
 
-#Nmap scan arguments
+#Nmap scans
 ipc='-sC -sV -oA nmap-output/ippsec'
 all='-Pn -p- -v -v --open -oA nmap-output/allports'
 svc='--open -O -sV -T4 -A -v -v -Pn -oA nmap-output/service'
@@ -79,17 +98,11 @@ user:
 root: 
 [+] Post Exploitation
 '''
-
-def staging(): #Make target folders and files, and change directory into target folder
-    with open("index.html", "w") as file:
-        file.write(html_code)
-    with open("report.txt", "w") as file:
-        file.write(report)
-    if not os.path.exists(tfolder):
-        os.makedirs(tfolder)
-        for sub in subfolders:
-            os.makedirs(sub)
-    os.chdir(tfolder)
+#Administrative functions. 
+def timetracker(): #Announces date/time at the start and finish of this script
+    now = datetime.datetime.now()
+    date_time = now.strftime("%d%m%y %H:%M:%S")
+    print("Date/Time is: " + date_time)
 
 def banner(): #Fancy banner for the tool
     print ("")
@@ -106,6 +119,18 @@ def usage(): #Prints usage of the tool
     print ("example: ./furiousrecon 192.168.5.5 targetfolder ")
     sys.exit()
 
+#Essential functions
+def staging(): #Make target folders and files, and change directory into target folder
+    with open("index.html", "w") as file:
+        file.write(html_code)
+    with open("report.txt", "w") as file:
+        file.write(report)
+    if not os.path.exists(tfolder):
+        os.makedirs(tfolder)
+        for sub in subfolders:
+            os.makedirs(sub)
+    os.chdir(tfolder)
+
 def recon(): #Runs nmap scans
     for scan in scans:
         nmap.PortScanner(thost, arguments=scan)
@@ -116,14 +141,15 @@ if __name__ == "__main__":
     banner()
     if len(sys.argv) < 3:
         print("Not enough arguments. Try again")
-        print ("")
         usage()
     if len(sys.argv) > 3:
         print ("Too many arguments. Try again")
-        print ("")
         usage()
     else:
         staging()
         recon(thost, tfolder)
+        print("")
+        print ("Scans completed")
+        print (" |) --- Happy Hunting! ---> ")
         
 # end main
