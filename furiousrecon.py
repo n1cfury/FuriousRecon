@@ -44,12 +44,6 @@ Order of Operations (from the bash script)
 thost = (sys.argv(1))
 tfolder = (sys.argv(2))
 
-#Subdirectories
-sub1='nmap-output'
-sub2='images'
-sub3='tools'
-subfolders = [sub1,sub2,sub3]
-
 #Nmap scans
 ipc='-sC -sV -oA nmap-output/ippsec'
 all='-Pn -p- -v -v --open -oA nmap-output/allports'
@@ -121,15 +115,12 @@ def usage(): #Prints usage of the tool
 
 #Essential functions
 def staging(): #Make target folders and files, and change directory into target folder
-    with open("index.html", "w") as file:
-        file.write(html_code)
-    with open("report.txt", "w") as file:
-        file.write(report)
-    if not os.path.exists(tfolder):
-        os.makedirs(tfolder)
-        for sub in subfolders:
-            os.makedirs(sub)
+    os.mkdir(tfolder)
+    os.mkdir(tfolder + '/' + 'nmap-output')
+    os.mkdir(tfolder + '/' + 'images')
+    os.mkdir(tfolder + '/' + 'tools')
     os.chdir(tfolder)
+    print("Current working directory is: " + os.getcwd())
 
 def recon(): #Runs nmap scans
     for scan in scans:
