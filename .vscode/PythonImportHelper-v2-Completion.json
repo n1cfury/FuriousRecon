@@ -66,7 +66,16 @@
         "kind": 2,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "def recon(): #Runs nmap scans\n    for scan in scans:\n        os.system(scan + ' ' + thost)\n        time.sleep(5)\n        os.system(f\"xsltproc -o {nmap-output}/.html your_xsl_file.xsl {xml_file}\")\n#Administrative functions. \ndef timetracker(): #Announces date/time at the start and finish of this script\n    now = datetime.datetime.now()\n    date_time = now.strftime(\"%d%m%y %H:%M:%S\")\n    print(\"Date/Time is: \" + date_time)",
+        "peekOfCode": "def recon(): #Runs nmap scans\n    for scan in scans:\n        os.system(scan + ' ' + thost)\n        time.sleep(5)\n        os.system(f\"xsltproc nmap-output/\"+scan+\".xml -o nmap-output/\"+scan+\".html\")\ndef report(): #Writes txt file report of initial findings\n    with open(\"report.txt\", \"w\") as report:\n    report.write(tfolder \" - \" thost)\n    # Declare a variable with the text you want to add to the file\ntext_to_add = \"This is the text that will be added to the file.\"",
+        "detail": "furiousrecon",
+        "documentation": {}
+    },
+    {
+        "label": "report",
+        "kind": 2,
+        "importPath": "furiousrecon",
+        "description": "furiousrecon",
+        "peekOfCode": "def report(): #Writes txt file report of initial findings\n    with open(\"report.txt\", \"w\") as report:\n    report.write(tfolder \" - \" thost)\n    # Declare a variable with the text you want to add to the file\ntext_to_add = \"This is the text that will be added to the file.\"\n# Open the file in write mode\nwith open(\"report.txt\", \"w\") as file:\n    # Use the write() method to add the text to the file\n    file.write(text_to_add)\n    file.write(\"\\n\")",
         "detail": "furiousrecon",
         "documentation": {}
     },
@@ -120,7 +129,7 @@
         "kind": 5,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "scans = [ipc,all,svc,enm,vln,udp]\nhtml_code = \"\"\"\n<!DOCTYPE html>\n<html>\" \n<title>[*] Host Report for %s - %s [*]</title> % \n<body>\n<h2 align=\"center\"><b>[*] $2 - $1 [*]</h></bold>\n<nav>\n<h3 align=\"center\">\n<a href=\"nmap-output/ippsec.html\" target=\"iframe_a\">IppSec</a>",
+        "peekOfCode": "scans = [ipc,all,svc,enm,vln,udp]\nhtml_code = \"\"\"\n<!DOCTYPE html>\n<html>\" \n<title>[*] Host Report for  -  [*]</title> \n<body>\n<h2 align=\"center\"><b>[*] $2 - $1 [*]</h></bold>\n<nav>\n<h3 align=\"center\">\n<a href=\"nmap-output/ippsec.html\" target=\"iframe_a\">IppSec</a>",
         "detail": "furiousrecon",
         "documentation": {}
     },
@@ -129,7 +138,16 @@
         "kind": 5,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "html_code = \"\"\"\n<!DOCTYPE html>\n<html>\" \n<title>[*] Host Report for %s - %s [*]</title> % \n<body>\n<h2 align=\"center\"><b>[*] $2 - $1 [*]</h></bold>\n<nav>\n<h3 align=\"center\">\n<a href=\"nmap-output/ippsec.html\" target=\"iframe_a\">IppSec</a>\n<a href=\"nmap-output/allports.html\" target=\"iframe_a\">All Ports</a>",
+        "peekOfCode": "html_code = \"\"\"\n<!DOCTYPE html>\n<html>\" \n<title>[*] Host Report for  -  [*]</title> \n<body>\n<h2 align=\"center\"><b>[*] $2 - $1 [*]</h></bold>\n<nav>\n<h3 align=\"center\">\n<a href=\"nmap-output/ippsec.html\" target=\"iframe_a\">IppSec</a>\n<a href=\"nmap-output/allports.html\" target=\"iframe_a\">All Ports</a>",
+        "detail": "furiousrecon",
+        "documentation": {}
+    },
+    {
+        "label": "text_to_add",
+        "kind": 5,
+        "importPath": "furiousrecon",
+        "description": "furiousrecon",
+        "peekOfCode": "text_to_add = \"This is the text that will be added to the file.\"\n# Open the file in write mode\nwith open(\"report.txt\", \"w\") as file:\n    # Use the write() method to add the text to the file\n    file.write(text_to_add)\n    file.write(\"\\n\")\ndef timetracker(): #Announces date/time at the start and finish of this script\n    now = datetime.datetime.now()\n    date_time = now.strftime(\"%d%m%y %H:%M:%S\")\n    print(\"Date/Time is: \" + date_time)",
         "detail": "furiousrecon",
         "documentation": {}
     }
