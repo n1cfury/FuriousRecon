@@ -5,6 +5,7 @@ import sys
 import glob
 import datetime
 import time
+from termcolor import colored
 
 '''
     Furious Recon Todos
@@ -47,11 +48,7 @@ vln='nmap -Pn -T4 -v -v --script=*enum* -oA nmap-output/enum'
 udp='nmap -Pn -T4 -sS -sU -v -v -oA nmap-output/udp'
 scans = [ipc,all,svc,enm,vln,udp]
 
-def recon(): #Runs nmap scans
-    for scan in scans:
-        os.system(scan + ' ' + thost)
-        time.sleep(5)
-        os.system(f"xsltproc -o {nmap-output}/.html your_xsl_file.xsl {xml_file}")
+
 
 html_code = """
 <!DOCTYPE html>
@@ -92,6 +89,7 @@ user:
 root: 
 [+] Post Exploitation
 '''
+
 def staging(): #Make target folders and files, and change directory into target folder
     os.mkdir(tfolder)
     os.mkdir(tfolder + '/' + 'nmap-output')
@@ -101,9 +99,14 @@ def staging(): #Make target folders and files, and change directory into target 
     file = open(tfolder + '/' + "index.html", "w")
     file.write(html_code)
     file.close()
-    print ("HTML page created: ")
-    print("Current working directory is: " + os.getcwd())
+    print ("[+] HTML page created: ")
+    print("[+] Current working directory is: " + os.getcwd())
 
+def recon(): #Runs nmap scans
+    for scan in scans:
+        os.system(scan + ' ' + thost)
+        time.sleep(5)
+        os.system(f"xsltproc -o {nmap-output}/.html your_xsl_file.xsl {xml_file}")
 
 #Administrative functions. 
 def timetracker(): #Announces date/time at the start and finish of this script
@@ -112,18 +115,14 @@ def timetracker(): #Announces date/time at the start and finish of this script
     print("Date/Time is: " + date_time)
 
 def banner(): #Fancy banner for the tool
-    print ("")
-    print ("[*] ================================================[*]")
-    print ("[*]	FuriousRecon - @n1c_Fury                 [*]")
-    print ("[*]	Usage: ./recon.sh <ip> <name>	         [*]")
-    print ("[*]	Use '-iL path/file' for multiple hosts   [*]")
-    print ("[*]	github.com/n1cfury/FuriousRecon          [*]")
-    print ("[*] ================================================[*]")
-    print ("")
-    
+    print(colored("\nFuriousRecon - @n1c_Fury", 'yellow', attrs=['bold']))
+    print(colored("Usage: ./recon.sh <ip> <name>", 'blue'))
+    print(colored("Use '-iL path/file' for multiple hosts", 'blue'))
+    print(colored("github.com/n1cfury/FuriousRecon\n", 'yellow'))
+
 def usage(): #Prints usage of the tool
-    print ("Usage: ./furiousrecon.sh <ip> <name>")
-    print ("example: ./furiousrecon 192.168.5.5 targetfolder ")
+    print (colored("Usage: ./furiousrecon.sh <ip> <name>", 'yellow'))
+    print (colored("example: ./furiousrecon 192.168.5.5 targetfolder ",'yellow'))
     sys.exit()
 
 
@@ -131,17 +130,19 @@ def usage(): #Prints usage of the tool
 if __name__ == "__main__":
     banner()
     if len(sys.argv) < 3:
-        print("Not enough arguments. Try again")
+        print(colored("Not enough arguments. Try again",'red'))
         usage()
     if len(sys.argv) > 3:
-        print ("Too many arguments. Try again")
+        print (colored("Too many arguments. Try again", 'red'))
         usage()
     else:
         timetracker()
         staging()
         recon()
         print("")
-        print ("Scans completed")
+        print (colored("Scans completed",'green'))
+        timetracker()
         print (" |) --- Happy Hunting! ---> ")
+        sys.exit()
         
 # end main

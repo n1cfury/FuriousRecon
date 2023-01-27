@@ -45,12 +45,11 @@
         "documentation": {}
     },
     {
-        "label": "recon",
-        "kind": 2,
-        "importPath": "furiousrecon",
-        "description": "furiousrecon",
-        "peekOfCode": "def recon(): #Runs nmap scans\n    for scan in scans:\n        os.system(scan + ' ' + thost)\n        time.sleep(5)\n        os.system(f\"xsltproc -o {nmap-output}/.html your_xsl_file.xsl {xml_file}\")\nhtml_code = \"\"\"\n<!DOCTYPE html>\n<html>\" \n<title>[*] Host Report for %s - %s [*]</title> % \n<body>",
-        "detail": "furiousrecon",
+        "label": "colored",
+        "importPath": "termcolor",
+        "description": "termcolor",
+        "isExtraImport": true,
+        "detail": "termcolor",
         "documentation": {}
     },
     {
@@ -58,7 +57,16 @@
         "kind": 2,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "def staging(): #Make target folders and files, and change directory into target folder\n    os.mkdir(tfolder)\n    os.mkdir(tfolder + '/' + 'nmap-output')\n    os.mkdir(tfolder + '/' + 'images')\n    os.mkdir(tfolder + '/' + 'tools')\n    os.chdir(tfolder)\n    file = open(tfolder + '/' + \"index.html\", \"w\")\n    file.write(html_code)\n    file.close()\n    print (\"HTML page created: \")",
+        "peekOfCode": "def staging(): #Make target folders and files, and change directory into target folder\n    os.mkdir(tfolder)\n    os.mkdir(tfolder + '/' + 'nmap-output')\n    os.mkdir(tfolder + '/' + 'images')\n    os.mkdir(tfolder + '/' + 'tools')\n    os.chdir(tfolder)\n    file = open(tfolder + '/' + \"index.html\", \"w\")\n    file.write(html_code)\n    file.close()\n    print (\"[+] HTML page created: \")",
+        "detail": "furiousrecon",
+        "documentation": {}
+    },
+    {
+        "label": "recon",
+        "kind": 2,
+        "importPath": "furiousrecon",
+        "description": "furiousrecon",
+        "peekOfCode": "def recon(): #Runs nmap scans\n    for scan in scans:\n        os.system(scan + ' ' + thost)\n        time.sleep(5)\n        os.system(f\"xsltproc -o {nmap-output}/.html your_xsl_file.xsl {xml_file}\")\n#Administrative functions. \ndef timetracker(): #Announces date/time at the start and finish of this script\n    now = datetime.datetime.now()\n    date_time = now.strftime(\"%d%m%y %H:%M:%S\")\n    print(\"Date/Time is: \" + date_time)",
         "detail": "furiousrecon",
         "documentation": {}
     },
@@ -67,7 +75,7 @@
         "kind": 2,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "def timetracker(): #Announces date/time at the start and finish of this script\n    now = datetime.datetime.now()\n    date_time = now.strftime(\"%d%m%y %H:%M:%S\")\n    print(\"Date/Time is: \" + date_time)\ndef banner(): #Fancy banner for the tool\n    print (\"\")\n    print (\"[*] ================================================[*]\")\n    print (\"[*]\tFuriousRecon - @n1c_Fury                 [*]\")\n    print (\"[*]\tUsage: ./recon.sh <ip> <name>\t         [*]\")\n    print (\"[*]\tUse '-iL path/file' for multiple hosts   [*]\")",
+        "peekOfCode": "def timetracker(): #Announces date/time at the start and finish of this script\n    now = datetime.datetime.now()\n    date_time = now.strftime(\"%d%m%y %H:%M:%S\")\n    print(\"Date/Time is: \" + date_time)\ndef banner(): #Fancy banner for the tool\n    print(colored(\"\\nFuriousRecon - @n1c_Fury\", 'yellow', attrs=['bold']))\n    print(colored(\"Usage: ./recon.sh <ip> <name>\", 'blue'))\n    print(colored(\"Use '-iL path/file' for multiple hosts\", 'blue'))\n    print(colored(\"github.com/n1cfury/FuriousRecon\\n\", 'yellow'))\ndef usage(): #Prints usage of the tool",
         "detail": "furiousrecon",
         "documentation": {}
     },
@@ -76,7 +84,7 @@
         "kind": 2,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "def banner(): #Fancy banner for the tool\n    print (\"\")\n    print (\"[*] ================================================[*]\")\n    print (\"[*]\tFuriousRecon - @n1c_Fury                 [*]\")\n    print (\"[*]\tUsage: ./recon.sh <ip> <name>\t         [*]\")\n    print (\"[*]\tUse '-iL path/file' for multiple hosts   [*]\")\n    print (\"[*]\tgithub.com/n1cfury/FuriousRecon          [*]\")\n    print (\"[*] ================================================[*]\")\n    print (\"\")\ndef usage(): #Prints usage of the tool",
+        "peekOfCode": "def banner(): #Fancy banner for the tool\n    print(colored(\"\\nFuriousRecon - @n1c_Fury\", 'yellow', attrs=['bold']))\n    print(colored(\"Usage: ./recon.sh <ip> <name>\", 'blue'))\n    print(colored(\"Use '-iL path/file' for multiple hosts\", 'blue'))\n    print(colored(\"github.com/n1cfury/FuriousRecon\\n\", 'yellow'))\ndef usage(): #Prints usage of the tool\n    print (colored(\"Usage: ./furiousrecon.sh <ip> <name>\", 'yellow'))\n    print (colored(\"example: ./furiousrecon 192.168.5.5 targetfolder \",'yellow'))\n    sys.exit()\nif __name__ == \"__main__\":",
         "detail": "furiousrecon",
         "documentation": {}
     },
@@ -85,7 +93,7 @@
         "kind": 2,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "def usage(): #Prints usage of the tool\n    print (\"Usage: ./furiousrecon.sh <ip> <name>\")\n    print (\"example: ./furiousrecon 192.168.5.5 targetfolder \")\n    sys.exit()\nif __name__ == \"__main__\":\n    banner()\n    if len(sys.argv) < 3:\n        print(\"Not enough arguments. Try again\")\n        usage()\n    if len(sys.argv) > 3:",
+        "peekOfCode": "def usage(): #Prints usage of the tool\n    print (colored(\"Usage: ./furiousrecon.sh <ip> <name>\", 'yellow'))\n    print (colored(\"example: ./furiousrecon 192.168.5.5 targetfolder \",'yellow'))\n    sys.exit()\nif __name__ == \"__main__\":\n    banner()\n    if len(sys.argv) < 3:\n        print(colored(\"Not enough arguments. Try again\",'red'))\n        usage()\n    if len(sys.argv) > 3:",
         "detail": "furiousrecon",
         "documentation": {}
     },
@@ -103,7 +111,7 @@
         "kind": 5,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "tfolder = (sys.argv(2))\n#Nmap scans\nipc='nmap -sC -sV -oA nmap-output/ippsec'\nall='nmap -Pn -p- -v -v --open -oA nmap-output/allports'\nsvc='nmap --open -O -sV -T4 -A -v -v -Pn -oA nmap-output/service'\nenm='nmap -Pn -T4 -A -v -v --script=*vuln* -oA nmap-output/vulns'\nvln='nmap -Pn -T4 -v -v --script=*enum* -oA nmap-output/enum'\nudp='nmap -Pn -T4 -sS -sU -v -v -oA nmap-output/udp'\nscans = [ipc,all,svc,enm,vln,udp]\ndef recon(): #Runs nmap scans",
+        "peekOfCode": "tfolder = (sys.argv(2))\n#Nmap scans\nipc='nmap -sC -sV -oA nmap-output/ippsec'\nall='nmap -Pn -p- -v -v --open -oA nmap-output/allports'\nsvc='nmap --open -O -sV -T4 -A -v -v -Pn -oA nmap-output/service'\nenm='nmap -Pn -T4 -A -v -v --script=*vuln* -oA nmap-output/vulns'\nvln='nmap -Pn -T4 -v -v --script=*enum* -oA nmap-output/enum'\nudp='nmap -Pn -T4 -sS -sU -v -v -oA nmap-output/udp'\nscans = [ipc,all,svc,enm,vln,udp]\nhtml_code = \"\"\"",
         "detail": "furiousrecon",
         "documentation": {}
     },
@@ -112,7 +120,7 @@
         "kind": 5,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "scans = [ipc,all,svc,enm,vln,udp]\ndef recon(): #Runs nmap scans\n    for scan in scans:\n        os.system(scan + ' ' + thost)\n        time.sleep(5)\n        os.system(f\"xsltproc -o {nmap-output}/.html your_xsl_file.xsl {xml_file}\")\nhtml_code = \"\"\"\n<!DOCTYPE html>\n<html>\" \n<title>[*] Host Report for %s - %s [*]</title> % ",
+        "peekOfCode": "scans = [ipc,all,svc,enm,vln,udp]\nhtml_code = \"\"\"\n<!DOCTYPE html>\n<html>\" \n<title>[*] Host Report for %s - %s [*]</title> % \n<body>\n<h2 align=\"center\"><b>[*] $2 - $1 [*]</h></bold>\n<nav>\n<h3 align=\"center\">\n<a href=\"nmap-output/ippsec.html\" target=\"iframe_a\">IppSec</a>",
         "detail": "furiousrecon",
         "documentation": {}
     },
