@@ -66,7 +66,7 @@
         "kind": 2,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "def recon(): #Runs nmap scans\n    for scan in scans:\n        os.system(scan + ' ' + thost)\n        time.sleep(5)\n        os.system(f\"xsltproc nmap-output/\"+scan+\".xml -o nmap-output/\"+scan+\".html\")\ndef report(): #Writes txt file report of initial findings\n    with open(\"report.txt\", \"w\") as report:\n    report.write(tfolder \" - \" thost)\n    # Declare a variable with the text you want to add to the file\ntext_to_add = \"This is the text that will be added to the file.\"",
+        "peekOfCode": "def recon(): #Runs nmap scans\n    for scan in scans:\n        os.system(scan + ' ' + thost)\n        time.sleep(5)\n        os.system(f\"xsltproc nmap-output/\"+scan+\".xml -o nmap-output/\"+scan+\".html\")\ndef report(): #Writes txt file report of initial findings\n    os.system('cat nmap-output/allports.nmap |grep \"/\" |cut -d \" \" -f 1 > portlist.txt')\n    os.system('\\n')\n    os.system('cat nmap-output/udp.nmap |grep \"/\" |cut -d \" \" -f 1 >> portlist.txt') \n    with open(\"report.txt\", \"w\") as file:",
         "detail": "furiousrecon",
         "documentation": {}
     },
@@ -75,7 +75,7 @@
         "kind": 2,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "def report(): #Writes txt file report of initial findings\n    with open(\"report.txt\", \"w\") as report:\n    report.write(tfolder \" - \" thost)\n    # Declare a variable with the text you want to add to the file\ntext_to_add = \"This is the text that will be added to the file.\"\n# Open the file in write mode\nwith open(\"report.txt\", \"w\") as file:\n    # Use the write() method to add the text to the file\n    file.write(text_to_add)\n    file.write(\"\\n\")",
+        "peekOfCode": "def report(): #Writes txt file report of initial findings\n    os.system('cat nmap-output/allports.nmap |grep \"/\" |cut -d \" \" -f 1 > portlist.txt')\n    os.system('\\n')\n    os.system('cat nmap-output/udp.nmap |grep \"/\" |cut -d \" \" -f 1 >> portlist.txt') \n    with open(\"report.txt\", \"w\") as file:\n        file.write(tfolder +\" - \"+ thost )\n        file.write(\"\\n\")\n        os.system(\"cat portlist.txt |sort -n |uniq >> \"+tfolder+\"-report.txt\")\n    with open(\"report.txt\", \"a\") as report:\n        for line in reportnotes:",
         "detail": "furiousrecon",
         "documentation": {}
     },
@@ -147,7 +147,7 @@
         "kind": 5,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "text_to_add = \"This is the text that will be added to the file.\"\n# Open the file in write mode\nwith open(\"report.txt\", \"w\") as file:\n    # Use the write() method to add the text to the file\n    file.write(text_to_add)\n    file.write(\"\\n\")\ndef timetracker(): #Announces date/time at the start and finish of this script\n    now = datetime.datetime.now()\n    date_time = now.strftime(\"%d%m%y %H:%M:%S\")\n    print(\"Date/Time is: \" + date_time)",
+        "peekOfCode": "text_to_add = \"This is the text that will be added to the file.\"\ndef timetracker(): #Announces date/time at the start and finish of this script\n    now = datetime.datetime.now()\n    date_time = now.strftime(\"%d%m%y %H:%M:%S\")\n    print(\"Date/Time is: \" + date_time)\ndef banner(): #Fancy banner for the tool\n    print(colored(\"\\nFuriousRecon - @n1c_Fury\", 'yellow', attrs=['bold']))\n    print(colored(\"Usage: ./recon.sh <ip> <name>\", 'blue'))\n    print(colored(\"Use '-iL path/file' for multiple hosts\", 'blue'))\n    print(colored(\"github.com/n1cfury/FuriousRecon\\n\", 'yellow'))",
         "detail": "furiousrecon",
         "documentation": {}
     }
