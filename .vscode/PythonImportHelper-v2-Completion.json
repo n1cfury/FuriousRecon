@@ -53,6 +53,24 @@
         "documentation": {}
     },
     {
+        "label": "banner",
+        "kind": 2,
+        "importPath": "furiousrecon",
+        "description": "furiousrecon",
+        "peekOfCode": "def banner(): #Fancy banner for the tool\n    print(colored(\"\\nFuriousRecon - @n1c_Fury\", 'yellow', attrs=['bold']))\n    print(colored(\"Usage: ./recon.sh <ip> <name>\", 'blue'))\n    print(colored(\"Use '-iL path/file' for multiple hosts\", 'blue'))\n    print(colored(\"github.com/n1cfury/FuriousRecon\\n\", 'yellow'))\ndef usage(): #Prints usage of the tool\n    print (colored(\"Usage: ./furiousrecon.sh <ip> <name>\", 'yellow'))\n    print (colored(\"example: ./furiousrecon 192.168.5.5 targetfolder \",'yellow'))\n    sys.exit()\ndef staging(): #Make target folders and files, and change directory into target folder",
+        "detail": "furiousrecon",
+        "documentation": {}
+    },
+    {
+        "label": "usage",
+        "kind": 2,
+        "importPath": "furiousrecon",
+        "description": "furiousrecon",
+        "peekOfCode": "def usage(): #Prints usage of the tool\n    print (colored(\"Usage: ./furiousrecon.sh <ip> <name>\", 'yellow'))\n    print (colored(\"example: ./furiousrecon 192.168.5.5 targetfolder \",'yellow'))\n    sys.exit()\ndef staging(): #Make target folders and files, and change directory into target folder\n    os.mkdir(tfolder)\n    os.mkdir(tfolder + '/' + 'nmap-output')\n    os.mkdir(tfolder + '/' + 'images')\n    os.mkdir(tfolder + '/' + 'tools')\n    os.chdir(tfolder)",
+        "detail": "furiousrecon",
+        "documentation": {}
+    },
+    {
         "label": "staging",
         "kind": 2,
         "importPath": "furiousrecon",
@@ -84,25 +102,7 @@
         "kind": 2,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "def timetracker(): #Announces date/time at the start and finish of this script\n    now = datetime.datetime.now()\n    date_time = now.strftime(\"%d%m%y %H:%M:%S\")\n    print(\"Date/Time is: \" + date_time)\ndef banner(): #Fancy banner for the tool\n    print(colored(\"\\nFuriousRecon - @n1c_Fury\", 'yellow', attrs=['bold']))\n    print(colored(\"Usage: ./recon.sh <ip> <name>\", 'blue'))\n    print(colored(\"Use '-iL path/file' for multiple hosts\", 'blue'))\n    print(colored(\"github.com/n1cfury/FuriousRecon\\n\", 'yellow'))\ndef usage(): #Prints usage of the tool",
-        "detail": "furiousrecon",
-        "documentation": {}
-    },
-    {
-        "label": "banner",
-        "kind": 2,
-        "importPath": "furiousrecon",
-        "description": "furiousrecon",
-        "peekOfCode": "def banner(): #Fancy banner for the tool\n    print(colored(\"\\nFuriousRecon - @n1c_Fury\", 'yellow', attrs=['bold']))\n    print(colored(\"Usage: ./recon.sh <ip> <name>\", 'blue'))\n    print(colored(\"Use '-iL path/file' for multiple hosts\", 'blue'))\n    print(colored(\"github.com/n1cfury/FuriousRecon\\n\", 'yellow'))\ndef usage(): #Prints usage of the tool\n    print (colored(\"Usage: ./furiousrecon.sh <ip> <name>\", 'yellow'))\n    print (colored(\"example: ./furiousrecon 192.168.5.5 targetfolder \",'yellow'))\n    sys.exit()\nif __name__ == \"__main__\":",
-        "detail": "furiousrecon",
-        "documentation": {}
-    },
-    {
-        "label": "usage",
-        "kind": 2,
-        "importPath": "furiousrecon",
-        "description": "furiousrecon",
-        "peekOfCode": "def usage(): #Prints usage of the tool\n    print (colored(\"Usage: ./furiousrecon.sh <ip> <name>\", 'yellow'))\n    print (colored(\"example: ./furiousrecon 192.168.5.5 targetfolder \",'yellow'))\n    sys.exit()\nif __name__ == \"__main__\":\n    banner()\n    if len(sys.argv) < 3:\n        print(colored(\"Not enough arguments. Try again\",'red'))\n        usage()\n    if len(sys.argv) > 3:",
+        "peekOfCode": "def timetracker(): #Announces date/time at the start and finish of this script\n    now = datetime.datetime.now()\n    date_time = now.strftime(\"%d%m%y %H:%M:%S\")\n    print(\"Date/Time is: \" + date_time)\nif __name__ == \"__main__\":\n    banner()\n    if len(sys.argv) < 3:\n        print(colored(\"Not enough arguments. Try again\",'red'))\n        usage()\n    if len(sys.argv) > 3:",
         "detail": "furiousrecon",
         "documentation": {}
     },
@@ -139,15 +139,6 @@
         "importPath": "furiousrecon",
         "description": "furiousrecon",
         "peekOfCode": "html_code = \"\"\"\n<!DOCTYPE html>\n<html>\" \n<title>[*] Host Report for  -  [*]</title> \n<body>\n<h2 align=\"center\"><b>[*] $2 - $1 [*]</h></bold>\n<nav>\n<h3 align=\"center\">\n<a href=\"nmap-output/ippsec.html\" target=\"iframe_a\">IppSec</a>\n<a href=\"nmap-output/allports.html\" target=\"iframe_a\">All Ports</a>",
-        "detail": "furiousrecon",
-        "documentation": {}
-    },
-    {
-        "label": "text_to_add",
-        "kind": 5,
-        "importPath": "furiousrecon",
-        "description": "furiousrecon",
-        "peekOfCode": "text_to_add = \"This is the text that will be added to the file.\"\ndef timetracker(): #Announces date/time at the start and finish of this script\n    now = datetime.datetime.now()\n    date_time = now.strftime(\"%d%m%y %H:%M:%S\")\n    print(\"Date/Time is: \" + date_time)\ndef banner(): #Fancy banner for the tool\n    print(colored(\"\\nFuriousRecon - @n1c_Fury\", 'yellow', attrs=['bold']))\n    print(colored(\"Usage: ./recon.sh <ip> <name>\", 'blue'))\n    print(colored(\"Use '-iL path/file' for multiple hosts\", 'blue'))\n    print(colored(\"github.com/n1cfury/FuriousRecon\\n\", 'yellow'))",
         "detail": "furiousrecon",
         "documentation": {}
     }

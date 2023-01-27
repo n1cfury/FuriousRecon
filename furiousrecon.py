@@ -89,6 +89,17 @@ root:
 [+] Post Exploitation
 '''
 
+def banner(): #Fancy banner for the tool
+    print(colored("\nFuriousRecon - @n1c_Fury", 'yellow', attrs=['bold']))
+    print(colored("Usage: ./recon.sh <ip> <name>", 'blue'))
+    print(colored("Use '-iL path/file' for multiple hosts", 'blue'))
+    print(colored("github.com/n1cfury/FuriousRecon\n", 'yellow'))
+
+def usage(): #Prints usage of the tool
+    print (colored("Usage: ./furiousrecon.sh <ip> <name>", 'yellow'))
+    print (colored("example: ./furiousrecon 192.168.5.5 targetfolder ",'yellow'))
+    sys.exit()
+
 def staging(): #Make target folders and files, and change directory into target folder
     os.mkdir(tfolder)
     os.mkdir(tfolder + '/' + 'nmap-output')
@@ -107,7 +118,6 @@ def recon(): #Runs nmap scans
         time.sleep(5)
         os.system(f"xsltproc nmap-output/"+scan+".xml -o nmap-output/"+scan+".html")
 
-
 def report(): #Writes txt file report of initial findings
     os.system('cat nmap-output/allports.nmap |grep "/" |cut -d " " -f 1 > portlist.txt')
     os.system('\n')
@@ -121,27 +131,10 @@ def report(): #Writes txt file report of initial findings
             file.write(line)
             file.write("\n")
     
-    # Declare a variable with the text you want to add to the file
-text_to_add = "This is the text that will be added to the file."
-
-
-
 def timetracker(): #Announces date/time at the start and finish of this script
     now = datetime.datetime.now()
     date_time = now.strftime("%d%m%y %H:%M:%S")
     print("Date/Time is: " + date_time)
-
-def banner(): #Fancy banner for the tool
-    print(colored("\nFuriousRecon - @n1c_Fury", 'yellow', attrs=['bold']))
-    print(colored("Usage: ./recon.sh <ip> <name>", 'blue'))
-    print(colored("Use '-iL path/file' for multiple hosts", 'blue'))
-    print(colored("github.com/n1cfury/FuriousRecon\n", 'yellow'))
-
-def usage(): #Prints usage of the tool
-    print (colored("Usage: ./furiousrecon.sh <ip> <name>", 'yellow'))
-    print (colored("example: ./furiousrecon 192.168.5.5 targetfolder ",'yellow'))
-    sys.exit()
-
 
 
 if __name__ == "__main__":
