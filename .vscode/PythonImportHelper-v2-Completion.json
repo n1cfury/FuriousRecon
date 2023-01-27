@@ -27,21 +27,20 @@
         "documentation": {}
     },
     {
-        "label": "datetime",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "datetime",
-        "description": "datetime",
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
         "label": "time",
         "kind": 6,
         "isExtraImport": true,
         "importPath": "time",
         "description": "time",
         "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
         "documentation": {}
     },
     {
@@ -98,20 +97,11 @@
         "documentation": {}
     },
     {
-        "label": "timetracker",
-        "kind": 2,
-        "importPath": "furiousrecon",
-        "description": "furiousrecon",
-        "peekOfCode": "def timetracker(): #Announces date/time at the start and finish of this script\n    now = datetime.datetime.now()\n    date_time = now.strftime(\"%d%m%y %H:%M:%S\")\n    print(\"Date/Time is: \" + date_time)\nif __name__ == \"__main__\":\n    banner()\n    if len(sys.argv) < 3:\n        print(colored(\"Not enough arguments. Try again\",'red'))\n        usage()\n    if len(sys.argv) > 3:",
-        "detail": "furiousrecon",
-        "documentation": {}
-    },
-    {
         "label": "thost",
         "kind": 5,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "thost = (sys.argv(1))\ntfolder = (sys.argv(2))\n#Nmap scans\nipc='nmap -sC -sV -oA nmap-output/ippsec'\nall='nmap -Pn -p- -v -v --open -oA nmap-output/allports'\nsvc='nmap --open -O -sV -T4 -A -v -v -Pn -oA nmap-output/service'\nenm='nmap -Pn -T4 -A -v -v --script=*vuln* -oA nmap-output/vulns'\nvln='nmap -Pn -T4 -v -v --script=*enum* -oA nmap-output/enum'\nudp='nmap -Pn -T4 -sS -sU -v -v -oA nmap-output/udp'\nscans = [ipc,all,svc,enm,vln,udp]",
+        "peekOfCode": "thost = (sys.argv(1)) #target host\ntfolder = (sys.argv(2))\n#Time check: \nnow = datetime.datetime.now()\ndate_time = now.strftime(\"%B %d %Y %H:%M:%S\")\n#Nmap scans\nipc='nmap -sC -sV -oA nmap-output/ippsec'\nall='nmap -Pn -p- -v -v --open -oA nmap-output/allports'\nsvc='nmap --open -O -sV -T4 -A -v -v -Pn -oA nmap-output/service'\nenm='nmap -Pn -T4 -A -v -v --script=*vuln* -oA nmap-output/vulns'",
         "detail": "furiousrecon",
         "documentation": {}
     },
@@ -120,7 +110,25 @@
         "kind": 5,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "tfolder = (sys.argv(2))\n#Nmap scans\nipc='nmap -sC -sV -oA nmap-output/ippsec'\nall='nmap -Pn -p- -v -v --open -oA nmap-output/allports'\nsvc='nmap --open -O -sV -T4 -A -v -v -Pn -oA nmap-output/service'\nenm='nmap -Pn -T4 -A -v -v --script=*vuln* -oA nmap-output/vulns'\nvln='nmap -Pn -T4 -v -v --script=*enum* -oA nmap-output/enum'\nudp='nmap -Pn -T4 -sS -sU -v -v -oA nmap-output/udp'\nscans = [ipc,all,svc,enm,vln,udp]\nhtml_code = \"\"\"",
+        "peekOfCode": "tfolder = (sys.argv(2))\n#Time check: \nnow = datetime.datetime.now()\ndate_time = now.strftime(\"%B %d %Y %H:%M:%S\")\n#Nmap scans\nipc='nmap -sC -sV -oA nmap-output/ippsec'\nall='nmap -Pn -p- -v -v --open -oA nmap-output/allports'\nsvc='nmap --open -O -sV -T4 -A -v -v -Pn -oA nmap-output/service'\nenm='nmap -Pn -T4 -A -v -v --script=*vuln* -oA nmap-output/vulns'\nvln='nmap -Pn -T4 -v -v --script=*enum* -oA nmap-output/enum'",
+        "detail": "furiousrecon",
+        "documentation": {}
+    },
+    {
+        "label": "now",
+        "kind": 5,
+        "importPath": "furiousrecon",
+        "description": "furiousrecon",
+        "peekOfCode": "now = datetime.datetime.now()\ndate_time = now.strftime(\"%B %d %Y %H:%M:%S\")\n#Nmap scans\nipc='nmap -sC -sV -oA nmap-output/ippsec'\nall='nmap -Pn -p- -v -v --open -oA nmap-output/allports'\nsvc='nmap --open -O -sV -T4 -A -v -v -Pn -oA nmap-output/service'\nenm='nmap -Pn -T4 -A -v -v --script=*vuln* -oA nmap-output/vulns'\nvln='nmap -Pn -T4 -v -v --script=*enum* -oA nmap-output/enum'\nudp='nmap -Pn -T4 -sS -sU -v -v -oA nmap-output/udp'\nscans = [ipc,all,svc,enm,vln,udp]",
+        "detail": "furiousrecon",
+        "documentation": {}
+    },
+    {
+        "label": "date_time",
+        "kind": 5,
+        "importPath": "furiousrecon",
+        "description": "furiousrecon",
+        "peekOfCode": "date_time = now.strftime(\"%B %d %Y %H:%M:%S\")\n#Nmap scans\nipc='nmap -sC -sV -oA nmap-output/ippsec'\nall='nmap -Pn -p- -v -v --open -oA nmap-output/allports'\nsvc='nmap --open -O -sV -T4 -A -v -v -Pn -oA nmap-output/service'\nenm='nmap -Pn -T4 -A -v -v --script=*vuln* -oA nmap-output/vulns'\nvln='nmap -Pn -T4 -v -v --script=*enum* -oA nmap-output/enum'\nudp='nmap -Pn -T4 -sS -sU -v -v -oA nmap-output/udp'\nscans = [ipc,all,svc,enm,vln,udp]\nhtml_code = \"\"\"",
         "detail": "furiousrecon",
         "documentation": {}
     },
