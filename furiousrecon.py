@@ -37,7 +37,7 @@ from termcolor import colored
         
 '''
 
-#Variables
+#Arguments
 thost = (sys.argv(1))
 tfolder = (sys.argv(2))
 
@@ -72,7 +72,6 @@ html_code = """
 """
 
 reportnotes= '''
-[+] IP/Host:
 [+] TCP/UDP Ports:
 [+] Web Recon (directories, robots.txt, etc)
 [+] User Creds discovered (did you find users and/or passwords
@@ -110,17 +109,21 @@ def recon(): #Runs nmap scans
 
 
 def report(): #Writes txt file report of initial findings
-    with open("report.txt", "w") as report:
-    report.write(tfolder " - " thost)
+    os.system('cat nmap-output/allports.nmap |grep "/" |cut -d " " -f 1 > portlist.txt')
+    os.system('\n')
+    os.system('cat nmap-output/udp.nmap |grep "/" |cut -d " " -f 1 >> portlist.txt') 
+    with open("report.txt", "w") as file:
+        file.write(tfolder +" - "+ thost )
+        file.write("\n")
+        os.system("cat portlist.txt |sort -n |uniq >> "+tfolder+"-report.txt")
+    with open("report.txt", "a") as report:
+        for line in reportnotes:
+            file.write(line)
+            file.write("\n")
     
     # Declare a variable with the text you want to add to the file
 text_to_add = "This is the text that will be added to the file."
 
-# Open the file in write mode
-with open("report.txt", "w") as file:
-    # Use the write() method to add the text to the file
-    file.write(text_to_add)
-    file.write("\n")
 
 
 def timetracker(): #Announces date/time at the start and finish of this script
