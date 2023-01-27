@@ -3,22 +3,12 @@
 import os
 import sys
 import glob
-import datetime
 import time
+from datetime import datetime
 from termcolor import colored
 
-'''
-    Furious Recon Todos
-            foreach [scan,5 sec delay,xsltproc]
-            xsltproc nmap-output/udp.xml -o nmap-output/udp.html
-        Create Report txt file (lines 68-87)
-            List ports in TCP ports secion (sorted by order)
-
-    What are the most important functions
-        Create working folders for your target
-        Create html page for the report
-        create txt file for report notes (appending ports and name/ip of target)
-        Run multiple nmap scans (output all formats)
+''' Details
+    Debugging ToDos
         
     Order of Operations (from the bash script)
         Print the banner
@@ -33,13 +23,15 @@ from termcolor import colored
             Grab tcp ports from allports, sort in order and append to TCP line
             Grab udp ports from udp scan, sort in order and append to UDP line
             Create rest of the text file
-        Announce date/time (finish)
-        
+        Announce date/time (finish)      
 '''
 
-#Arguments
-thost = (sys.argv(1))
+thost = (sys.argv(1)) #target host
 tfolder = (sys.argv(2))
+
+#Time check: 
+now = datetime.datetime.now()
+date_time = now.strftime("%B %d %Y %H:%M:%S")
 
 #Nmap scans
 ipc='nmap -sC -sV -oA nmap-output/ippsec'
@@ -130,12 +122,6 @@ def report(): #Writes txt file report of initial findings
         for line in reportnotes:
             file.write(line)
             file.write("\n")
-    
-def timetracker(): #Announces date/time at the start and finish of this script
-    now = datetime.datetime.now()
-    date_time = now.strftime("%d%m%y %H:%M:%S")
-    print("Date/Time is: " + date_time)
-
 
 if __name__ == "__main__":
     banner()
@@ -146,12 +132,11 @@ if __name__ == "__main__":
         print (colored("Too many arguments. Try again", 'red'))
         usage()
     else:
-        timetracker()
+        print (colored("Recon has started on: "+ date_time, 'green'))
         staging()
         recon()
         print("")
-        print (colored("Scans completed",'green'))
-        timetracker()
+        print (colored("Scan has completed on : "+ date_time,'green'))
         print (" |) --- Happy Hunting! ---> ")
         sys.exit()
         
