@@ -10,7 +10,9 @@ from termcolor import colored
 '''
     Furious Recon Todos
             foreach [scan,5 sec delay,xsltproc]
+            xsltproc nmap-output/udp.xml -o nmap-output/udp.html
         Create Report txt file (lines 68-87)
+            List ports in TCP ports secion (sorted by order)
 
     What are the most important functions
         Create working folders for your target
@@ -48,12 +50,10 @@ vln='nmap -Pn -T4 -v -v --script=*enum* -oA nmap-output/enum'
 udp='nmap -Pn -T4 -sS -sU -v -v -oA nmap-output/udp'
 scans = [ipc,all,svc,enm,vln,udp]
 
-
-
 html_code = """
 <!DOCTYPE html>
 <html>" 
-<title>[*] Host Report for %s - %s [*]</title> % 
+<title>[*] Host Report for  -  [*]</title> 
 <body>
 <h2 align="center"><b>[*] $2 - $1 [*]</h></bold>
 <nav>
@@ -71,7 +71,7 @@ html_code = """
 </html>
 """
 
-report= '''
+reportnotes= '''
 [+] IP/Host:
 [+] TCP/UDP Ports:
 [+] Web Recon (directories, robots.txt, etc)
@@ -106,9 +106,23 @@ def recon(): #Runs nmap scans
     for scan in scans:
         os.system(scan + ' ' + thost)
         time.sleep(5)
-        os.system(f"xsltproc -o {nmap-output}/.html your_xsl_file.xsl {xml_file}")
+        os.system(f"xsltproc nmap-output/"+scan+".xml -o nmap-output/"+scan+".html")
 
-#Administrative functions. 
+
+def report(): #Writes txt file report of initial findings
+    with open("report.txt", "w") as report:
+    report.write(tfolder " - " thost)
+    
+    # Declare a variable with the text you want to add to the file
+text_to_add = "This is the text that will be added to the file."
+
+# Open the file in write mode
+with open("report.txt", "w") as file:
+    # Use the write() method to add the text to the file
+    file.write(text_to_add)
+    file.write("\n")
+
+
 def timetracker(): #Announces date/time at the start and finish of this script
     now = datetime.datetime.now()
     date_time = now.strftime("%d%m%y %H:%M:%S")
