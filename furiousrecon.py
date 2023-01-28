@@ -42,26 +42,27 @@ vln='nmap -Pn -T4 -v -v --script=*enum* -oA nmap-output/enum'
 udp='nmap -Pn -T4 -sS -sU -v -v -oA nmap-output/udp'
 scans = [ipc,all,svc,enm,vln,udp]
 
-html_code = """
-<!DOCTYPE html>
-<html>" 
-<title>[*] Host Report for  -  [*]</title> 
-<body>
-<h2 align="center"><b>[*] $2 - $1 [*]</h></bold>
-<nav>
-<h3 align="center">
-<a href="nmap-output/ippsec.html" target="iframe_a">IppSec</a>
-<a href="nmap-output/allports.html" target="iframe_a">All Ports</a>
-<a href="nmap-output/service.html" target="iframe_a">Services</a>
-<a href="nmap-output/enum.html" target="iframe_a">Enum</a>
-<a href="nmap-output/vulns.html" target="iframe_a">Vulns</a>
-<a href="nmap-output/udp.html" target="iframe_a">UDP</a>
-<p align="left"><iframe height="800px" width="800px" name="iframe_a"></iframe></p>
-</h3>
-</nav>
-</body>
-</html>
-"""
+def html_code():    #The HTML page for your report
+    with open(tfolder+"-report.html", "w") as file:
+        file.write("<!DOCTYPE html>\n")
+        file.write("<html>\n")
+        file.write("<title>[*] Host Report for "+tfolder+" [*]</title>\n")
+        file.write("<body>\n")
+        file.write("<h2 align='center''><b>[*]'+tfolder+' - '+thost+' [*]</h></bold>\n")
+        file.write("<nav>\n")
+        file.write("<h3 align='center'>\n")
+        file.write("<a href='nmap-output/ippsec.html' target='iframe_a'>IppSec</a>\n")
+        file.write("<a href='nmap-output/allports.html' target='iframe_a'>All Ports</a>\n")
+        file.write("<a href='nmap-output/service.html' target='iframe_a'>Services</a>\n")
+        file.write("<a href='nmap-output/enum.html' target='iframe_a'>Enum</a\n")
+        file.write("<a href='nmap-output/vulns.html' target='iframe_a'>Vulns</a>\n")
+        file.write("<a href='nmap-output/udp.html' target='iframe_a'>UDP</a>\n")
+        file.write("<p align='left'><iframe height='800px' width='800px' name='iframe_a'></iframe></p>\n")
+        file.write("</h3>\n")
+        file.write("</nav>\n")
+        file.write("</body>\n")
+        file.write("</html>\n")
+        file.close()
 
 reportnotes= '''
 [+] TCP/UDP Ports:
@@ -98,11 +99,11 @@ def staging(): #Make target folders and files, and change directory into target 
     os.mkdir(tfolder + '/' + 'images')
     os.mkdir(tfolder + '/' + 'tools')
     os.chdir(tfolder)
-    file = open(tfolder + '/' + "index.html", "w")
-    file.write(html_code)
-    file.close()
-    print ("[+] HTML page created: ")
+    print ("[+] Working Directories created")
     print("[+] Current working directory is: " + os.getcwd())
+    html_code()
+    print ("[+] HTML page created: ")
+
 
 def recon(): #Runs nmap scans
     for scan in scans:
@@ -126,9 +127,11 @@ def report(): #Writes txt file report of initial findings
 if __name__ == "__main__":
     banner()
     if len(sys.argv) < 3:
+        print("")
         print(colored("Not enough arguments. Try again",'red'))
         usage()
     if len(sys.argv) > 3:
+        print("")
         print (colored("Too many arguments. Try again", 'red'))
         usage()
     else:

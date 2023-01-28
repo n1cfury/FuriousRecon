@@ -52,6 +52,15 @@
         "documentation": {}
     },
     {
+        "label": "html_code",
+        "kind": 2,
+        "importPath": "furiousrecon",
+        "description": "furiousrecon",
+        "peekOfCode": "def html_code():    #The HTML page for your report\n    with open(tfolder+\"-report.html\", \"w\") as file:\n        file.write(\"<!DOCTYPE html>\\n\")\n        file.write(\"<html>\\n\")\n        file.write(\"<title>[*] Host Report for \"+tfolder+\" [*]</title>\\n\")\n        file.write(\"<body>\\n\")\n        file.write(\"<h2 align='center''><b>[*]'+tfolder+' - '+thost+' [*]</h></bold>\\n\")\n        file.write(\"<nav>\\n\")\n        file.write(\"<h3 align='center'>\\n\")\n        file.write(\"<a href='nmap-output/ippsec.html' target='iframe_a'>IppSec</a>\\n\")",
+        "detail": "furiousrecon",
+        "documentation": {}
+    },
+    {
         "label": "banner",
         "kind": 2,
         "importPath": "furiousrecon",
@@ -74,7 +83,7 @@
         "kind": 2,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "def staging(): #Make target folders and files, and change directory into target folder\n    os.mkdir(tfolder)\n    os.mkdir(tfolder + '/' + 'nmap-output')\n    os.mkdir(tfolder + '/' + 'images')\n    os.mkdir(tfolder + '/' + 'tools')\n    os.chdir(tfolder)\n    file = open(tfolder + '/' + \"index.html\", \"w\")\n    file.write(html_code)\n    file.close()\n    print (\"[+] HTML page created: \")",
+        "peekOfCode": "def staging(): #Make target folders and files, and change directory into target folder\n    os.mkdir(tfolder)\n    os.mkdir(tfolder + '/' + 'nmap-output')\n    os.mkdir(tfolder + '/' + 'images')\n    os.mkdir(tfolder + '/' + 'tools')\n    os.chdir(tfolder)\n    print (\"[+] Working Directories created\")\n    print(\"[+] Current working directory is: \" + os.getcwd())\n    html_code()\n    print (\"[+] HTML page created: \")",
         "detail": "furiousrecon",
         "documentation": {}
     },
@@ -128,7 +137,7 @@
         "kind": 5,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "date_time = now.strftime(\"%B %d %Y %H:%M:%S\")\n#Nmap scans\nipc='nmap -sC -sV -oA nmap-output/ippsec'\nall='nmap -Pn -p- -v -v --open -oA nmap-output/allports'\nsvc='nmap --open -O -sV -T4 -A -v -v -Pn -oA nmap-output/service'\nenm='nmap -Pn -T4 -A -v -v --script=*vuln* -oA nmap-output/vulns'\nvln='nmap -Pn -T4 -v -v --script=*enum* -oA nmap-output/enum'\nudp='nmap -Pn -T4 -sS -sU -v -v -oA nmap-output/udp'\nscans = [ipc,all,svc,enm,vln,udp]\nhtml_code = \"\"\"",
+        "peekOfCode": "date_time = now.strftime(\"%B %d %Y %H:%M:%S\")\n#Nmap scans\nipc='nmap -sC -sV -oA nmap-output/ippsec'\nall='nmap -Pn -p- -v -v --open -oA nmap-output/allports'\nsvc='nmap --open -O -sV -T4 -A -v -v -Pn -oA nmap-output/service'\nenm='nmap -Pn -T4 -A -v -v --script=*vuln* -oA nmap-output/vulns'\nvln='nmap -Pn -T4 -v -v --script=*enum* -oA nmap-output/enum'\nudp='nmap -Pn -T4 -sS -sU -v -v -oA nmap-output/udp'\nscans = [ipc,all,svc,enm,vln,udp]\ndef html_code():    #The HTML page for your report",
         "detail": "furiousrecon",
         "documentation": {}
     },
@@ -137,16 +146,7 @@
         "kind": 5,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "scans = [ipc,all,svc,enm,vln,udp]\nhtml_code = \"\"\"\n<!DOCTYPE html>\n<html>\" \n<title>[*] Host Report for  -  [*]</title> \n<body>\n<h2 align=\"center\"><b>[*] $2 - $1 [*]</h></bold>\n<nav>\n<h3 align=\"center\">\n<a href=\"nmap-output/ippsec.html\" target=\"iframe_a\">IppSec</a>",
-        "detail": "furiousrecon",
-        "documentation": {}
-    },
-    {
-        "label": "html_code",
-        "kind": 5,
-        "importPath": "furiousrecon",
-        "description": "furiousrecon",
-        "peekOfCode": "html_code = \"\"\"\n<!DOCTYPE html>\n<html>\" \n<title>[*] Host Report for  -  [*]</title> \n<body>\n<h2 align=\"center\"><b>[*] $2 - $1 [*]</h></bold>\n<nav>\n<h3 align=\"center\">\n<a href=\"nmap-output/ippsec.html\" target=\"iframe_a\">IppSec</a>\n<a href=\"nmap-output/allports.html\" target=\"iframe_a\">All Ports</a>",
+        "peekOfCode": "scans = [ipc,all,svc,enm,vln,udp]\ndef html_code():    #The HTML page for your report\n    with open(tfolder+\"-report.html\", \"w\") as file:\n        file.write(\"<!DOCTYPE html>\\n\")\n        file.write(\"<html>\\n\")\n        file.write(\"<title>[*] Host Report for \"+tfolder+\" [*]</title>\\n\")\n        file.write(\"<body>\\n\")\n        file.write(\"<h2 align='center''><b>[*]'+tfolder+' - '+thost+' [*]</h></bold>\\n\")\n        file.write(\"<nav>\\n\")\n        file.write(\"<h3 align='center'>\\n\")",
         "detail": "furiousrecon",
         "documentation": {}
     }
