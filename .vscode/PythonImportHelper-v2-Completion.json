@@ -52,20 +52,11 @@
         "documentation": {}
     },
     {
-        "label": "html_code",
-        "kind": 2,
-        "importPath": "furiousrecon",
-        "description": "furiousrecon",
-        "peekOfCode": "def html_code():    #The HTML page for your report\n    with open(tfolder+\"-report.html\", \"w\") as file:\n        file.write(\"<!DOCTYPE html>\\n\")\n        file.write(\"<html>\\n\")\n        file.write(\"<title>[*] Host Report for \"+tfolder+\" [*]</title>\\n\")\n        file.write(\"<body>\\n\")\n        file.write(\"<h2 align='center''><b>[*]'+tfolder+' - '+thost+' [*]</h></bold>\\n\")\n        file.write(\"<nav>\\n\")\n        file.write(\"<h3 align='center'>\\n\")\n        file.write(\"<a href='nmap-output/ippsec.html' target='iframe_a'>IppSec</a>\\n\")",
-        "detail": "furiousrecon",
-        "documentation": {}
-    },
-    {
         "label": "banner",
         "kind": 2,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "def banner(): #Fancy banner for the tool\n    print(colored(\"\\nFuriousRecon - @n1c_Fury\", 'yellow', attrs=['bold']))\n    print(colored(\"Usage: ./recon.sh <ip> <name>\", 'blue'))\n    print(colored(\"Use '-iL path/file' for multiple hosts\", 'blue'))\n    print(colored(\"github.com/n1cfury/FuriousRecon\\n\", 'yellow'))\ndef usage(): #Prints usage of the tool\n    print (colored(\"Usage: ./furiousrecon.sh <ip> <name>\", 'yellow'))\n    print (colored(\"example: ./furiousrecon 192.168.5.5 targetfolder \",'yellow'))\n    sys.exit()\ndef staging(): #Make target folders and files, and change directory into target folder",
+        "peekOfCode": "def banner(): #Fancy banner for the tool\n    print(colored(\"\\nFuriousRecon - @n1c_Fury\", 'yellow', attrs=['bold']))\n    print(colored(\"Usage: ./recon.sh <ip> <name>\", 'blue'))\n    print(colored(\"Use '-iL path/file' for multiple hosts\", 'blue'))\n    print(colored(\"github.com/n1cfury/FuriousRecon\\n\", 'yellow'))\ndef usage(): #Prints usage of the tool\n    print (colored(\"Usage: ./furiousrecon.sh <ip> <name>\", 'yellow'))\n    print (colored(\"example: ./furiousrecon 192.168.5.5 targetfolder \",'yellow'))\n    sys.exit()\ndef html_code():    #The HTML page for your report",
         "detail": "furiousrecon",
         "documentation": {}
     },
@@ -74,7 +65,16 @@
         "kind": 2,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "def usage(): #Prints usage of the tool\n    print (colored(\"Usage: ./furiousrecon.sh <ip> <name>\", 'yellow'))\n    print (colored(\"example: ./furiousrecon 192.168.5.5 targetfolder \",'yellow'))\n    sys.exit()\ndef staging(): #Make target folders and files, and change directory into target folder\n    os.mkdir(tfolder)\n    os.mkdir(tfolder + '/' + 'nmap-output')\n    os.mkdir(tfolder + '/' + 'images')\n    os.mkdir(tfolder + '/' + 'tools')\n    os.chdir(tfolder)",
+        "peekOfCode": "def usage(): #Prints usage of the tool\n    print (colored(\"Usage: ./furiousrecon.sh <ip> <name>\", 'yellow'))\n    print (colored(\"example: ./furiousrecon 192.168.5.5 targetfolder \",'yellow'))\n    sys.exit()\ndef html_code():    #The HTML page for your report\n    with open(tfolder+\"-report.html\", \"w\") as file:\n        file.write(\"<!DOCTYPE html>\\n\")\n        file.write(\"<html>\\n\")\n        file.write(\"<title>[*] Host Report for \"+tfolder+\" [*]</title>\\n\")\n        file.write(\"<body>\\n\")",
+        "detail": "furiousrecon",
+        "documentation": {}
+    },
+    {
+        "label": "html_code",
+        "kind": 2,
+        "importPath": "furiousrecon",
+        "description": "furiousrecon",
+        "peekOfCode": "def html_code():    #The HTML page for your report\n    with open(tfolder+\"-report.html\", \"w\") as file:\n        file.write(\"<!DOCTYPE html>\\n\")\n        file.write(\"<html>\\n\")\n        file.write(\"<title>[*] Host Report for \"+tfolder+\" [*]</title>\\n\")\n        file.write(\"<body>\\n\")\n        file.write(\"<h2 align='center''><b>[*]'+tfolder+' - '+thost+' [*]</h></bold>\\n\")\n        file.write(\"<nav>\\n\")\n        file.write(\"<h3 align='center'>\\n\")\n        file.write(\"<a href='nmap-output/ippsec.html' target='iframe_a'>IppSec</a>\\n\")",
         "detail": "furiousrecon",
         "documentation": {}
     },
@@ -101,7 +101,7 @@
         "kind": 2,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "def report(): #Writes txt file report of initial findings\n    os.system('cat nmap-output/allports.nmap |grep \"/\" |cut -d \" \" -f 1 > portlist.txt')\n    os.system('\\n')\n    os.system('cat nmap-output/udp.nmap |grep \"/\" |cut -d \" \" -f 1 >> portlist.txt') \n    with open(\"report.txt\", \"w\") as file:\n        file.write(tfolder +\" - \"+ thost )\n        file.write(\"\\n\")\n        os.system(\"cat portlist.txt |sort -n |uniq >> \"+tfolder+\"-report.txt\")\n    with open(\"report.txt\", \"a\") as report:\n        for line in reportnotes:",
+        "peekOfCode": "def report(): #Writes txt file report of initial findings\n    os.system('cat nmap-output/allports.nmap |grep \"/\" |cut -d \" \" -f 1 > portlist.txt')\n    os.system('\\n')\n    os.system('cat nmap-output/udp.nmap |grep \"/\" |cut -d \" \" -f 1 >> portlist.txt') \n    with open(\"report.txt\", \"w\") as file:\n        file.write(tfolder +\" - \"+ thost+)\n        file.write(\"\\n\")\n        os.system(\"cat portlist.txt |sort -n |uniq >> \"+tfolder+\"-report.txt\")\n    with open(\"report.txt\", \"a\") as report:\n        for line in reportnotes:",
         "detail": "furiousrecon",
         "documentation": {}
     },
@@ -110,7 +110,7 @@
         "kind": 5,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "thost = (sys.argv(1)) #target host\ntfolder = (sys.argv(2))\n#Time check: \nnow = datetime.datetime.now()\ndate_time = now.strftime(\"%B %d %Y %H:%M:%S\")\n#Nmap scans\nipc='nmap -sC -sV -oA nmap-output/ippsec'\nall='nmap -Pn -p- -v -v --open -oA nmap-output/allports'\nsvc='nmap --open -O -sV -T4 -A -v -v -Pn -oA nmap-output/service'\nenm='nmap -Pn -T4 -A -v -v --script=*vuln* -oA nmap-output/vulns'",
+        "peekOfCode": "thost = (sys.argv(1)) #target host\ntfolder = (sys.argv(2))\n#Time check: \nnow = datetime.datetime.now()\ndate_time = now.strftime(\"%B %d %Y %H:%M:%S\")\n#Nmap scans used\nipc='nmap -sC -sV -oA nmap-output/ippsec'\nall='nmap -Pn -p- -v -v --open -oA nmap-output/allports'\nsvc='nmap --open -O -sV -T4 -A -v -v -Pn -oA nmap-output/service'\nenm='nmap -Pn -T4 -A -v -v --script=*vuln* -oA nmap-output/vulns'",
         "detail": "furiousrecon",
         "documentation": {}
     },
@@ -119,7 +119,7 @@
         "kind": 5,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "tfolder = (sys.argv(2))\n#Time check: \nnow = datetime.datetime.now()\ndate_time = now.strftime(\"%B %d %Y %H:%M:%S\")\n#Nmap scans\nipc='nmap -sC -sV -oA nmap-output/ippsec'\nall='nmap -Pn -p- -v -v --open -oA nmap-output/allports'\nsvc='nmap --open -O -sV -T4 -A -v -v -Pn -oA nmap-output/service'\nenm='nmap -Pn -T4 -A -v -v --script=*vuln* -oA nmap-output/vulns'\nvln='nmap -Pn -T4 -v -v --script=*enum* -oA nmap-output/enum'",
+        "peekOfCode": "tfolder = (sys.argv(2))\n#Time check: \nnow = datetime.datetime.now()\ndate_time = now.strftime(\"%B %d %Y %H:%M:%S\")\n#Nmap scans used\nipc='nmap -sC -sV -oA nmap-output/ippsec'\nall='nmap -Pn -p- -v -v --open -oA nmap-output/allports'\nsvc='nmap --open -O -sV -T4 -A -v -v -Pn -oA nmap-output/service'\nenm='nmap -Pn -T4 -A -v -v --script=*vuln* -oA nmap-output/vulns'\nvln='nmap -Pn -T4 -v -v --script=*enum* -oA nmap-output/enum'",
         "detail": "furiousrecon",
         "documentation": {}
     },
@@ -128,7 +128,7 @@
         "kind": 5,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "now = datetime.datetime.now()\ndate_time = now.strftime(\"%B %d %Y %H:%M:%S\")\n#Nmap scans\nipc='nmap -sC -sV -oA nmap-output/ippsec'\nall='nmap -Pn -p- -v -v --open -oA nmap-output/allports'\nsvc='nmap --open -O -sV -T4 -A -v -v -Pn -oA nmap-output/service'\nenm='nmap -Pn -T4 -A -v -v --script=*vuln* -oA nmap-output/vulns'\nvln='nmap -Pn -T4 -v -v --script=*enum* -oA nmap-output/enum'\nudp='nmap -Pn -T4 -sS -sU -v -v -oA nmap-output/udp'\nscans = [ipc,all,svc,enm,vln,udp]",
+        "peekOfCode": "now = datetime.datetime.now()\ndate_time = now.strftime(\"%B %d %Y %H:%M:%S\")\n#Nmap scans used\nipc='nmap -sC -sV -oA nmap-output/ippsec'\nall='nmap -Pn -p- -v -v --open -oA nmap-output/allports'\nsvc='nmap --open -O -sV -T4 -A -v -v -Pn -oA nmap-output/service'\nenm='nmap -Pn -T4 -A -v -v --script=*vuln* -oA nmap-output/vulns'\nvln='nmap -Pn -T4 -v -v --script=*enum* -oA nmap-output/enum'\nudp='nmap -Pn -T4 -sS -sU -v -v -oA nmap-output/udp'\nscans = [ipc,all,svc,enm,vln,udp]",
         "detail": "furiousrecon",
         "documentation": {}
     },
@@ -137,7 +137,7 @@
         "kind": 5,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "date_time = now.strftime(\"%B %d %Y %H:%M:%S\")\n#Nmap scans\nipc='nmap -sC -sV -oA nmap-output/ippsec'\nall='nmap -Pn -p- -v -v --open -oA nmap-output/allports'\nsvc='nmap --open -O -sV -T4 -A -v -v -Pn -oA nmap-output/service'\nenm='nmap -Pn -T4 -A -v -v --script=*vuln* -oA nmap-output/vulns'\nvln='nmap -Pn -T4 -v -v --script=*enum* -oA nmap-output/enum'\nudp='nmap -Pn -T4 -sS -sU -v -v -oA nmap-output/udp'\nscans = [ipc,all,svc,enm,vln,udp]\ndef html_code():    #The HTML page for your report",
+        "peekOfCode": "date_time = now.strftime(\"%B %d %Y %H:%M:%S\")\n#Nmap scans used\nipc='nmap -sC -sV -oA nmap-output/ippsec'\nall='nmap -Pn -p- -v -v --open -oA nmap-output/allports'\nsvc='nmap --open -O -sV -T4 -A -v -v -Pn -oA nmap-output/service'\nenm='nmap -Pn -T4 -A -v -v --script=*vuln* -oA nmap-output/vulns'\nvln='nmap -Pn -T4 -v -v --script=*enum* -oA nmap-output/enum'\nudp='nmap -Pn -T4 -sS -sU -v -v -oA nmap-output/udp'\nscans = [ipc,all,svc,enm,vln,udp]\nreportnotes= '''",
         "detail": "furiousrecon",
         "documentation": {}
     },
@@ -146,7 +146,7 @@
         "kind": 5,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "scans = [ipc,all,svc,enm,vln,udp]\ndef html_code():    #The HTML page for your report\n    with open(tfolder+\"-report.html\", \"w\") as file:\n        file.write(\"<!DOCTYPE html>\\n\")\n        file.write(\"<html>\\n\")\n        file.write(\"<title>[*] Host Report for \"+tfolder+\" [*]</title>\\n\")\n        file.write(\"<body>\\n\")\n        file.write(\"<h2 align='center''><b>[*]'+tfolder+' - '+thost+' [*]</h></bold>\\n\")\n        file.write(\"<nav>\\n\")\n        file.write(\"<h3 align='center'>\\n\")",
+        "peekOfCode": "scans = [ipc,all,svc,enm,vln,udp]\nreportnotes= '''\n[+] TCP/UDP Ports:\n[+] Web Recon (directories, robots.txt, etc)\n[+] User Creds discovered (did you find users and/or passwords\n[+] Network Connections (e.g. netstat output)\n[+] Attack Surface (what's in the box and what versions)\n[+] Possible Vulnerabilties (these might work)\n[+] Effective Exploits (these did work)\n[+] Gaining a Foothold (how you found a way in)",
         "detail": "furiousrecon",
         "documentation": {}
     }

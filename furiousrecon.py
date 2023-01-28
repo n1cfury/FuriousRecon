@@ -7,25 +7,8 @@ import time
 from datetime import datetime
 from termcolor import colored
 
-''' Details
-    Debugging ToDos
-        
-    Order of Operations (from the bash script)
-        Print the banner
-        Announce start date/time
-        Make the target folder(arg 2)
-        Create subfolders in target folder (tools, images, nmap-output)
-        change directory into target folder
-        Create HTML file
-        Run 6 Nmap scans (output all formats)
-        Create notes file
-            include target/ip name in the first line
-            Grab tcp ports from allports, sort in order and append to TCP line
-            Grab udp ports from udp scan, sort in order and append to UDP line
-            Create rest of the text file
-        Announce date/time (finish)      
-'''
-
+'''ToDo'''
+#Main Arguments
 thost = (sys.argv(1)) #target host
 tfolder = (sys.argv(2))
 
@@ -33,7 +16,7 @@ tfolder = (sys.argv(2))
 now = datetime.datetime.now()
 date_time = now.strftime("%B %d %Y %H:%M:%S")
 
-#Nmap scans
+#Nmap scans used
 ipc='nmap -sC -sV -oA nmap-output/ippsec'
 all='nmap -Pn -p- -v -v --open -oA nmap-output/allports'
 svc='nmap --open -O -sV -T4 -A -v -v -Pn -oA nmap-output/service'
@@ -41,28 +24,6 @@ enm='nmap -Pn -T4 -A -v -v --script=*vuln* -oA nmap-output/vulns'
 vln='nmap -Pn -T4 -v -v --script=*enum* -oA nmap-output/enum'
 udp='nmap -Pn -T4 -sS -sU -v -v -oA nmap-output/udp'
 scans = [ipc,all,svc,enm,vln,udp]
-
-def html_code():    #The HTML page for your report
-    with open(tfolder+"-report.html", "w") as file:
-        file.write("<!DOCTYPE html>\n")
-        file.write("<html>\n")
-        file.write("<title>[*] Host Report for "+tfolder+" [*]</title>\n")
-        file.write("<body>\n")
-        file.write("<h2 align='center''><b>[*]'+tfolder+' - '+thost+' [*]</h></bold>\n")
-        file.write("<nav>\n")
-        file.write("<h3 align='center'>\n")
-        file.write("<a href='nmap-output/ippsec.html' target='iframe_a'>IppSec</a>\n")
-        file.write("<a href='nmap-output/allports.html' target='iframe_a'>All Ports</a>\n")
-        file.write("<a href='nmap-output/service.html' target='iframe_a'>Services</a>\n")
-        file.write("<a href='nmap-output/enum.html' target='iframe_a'>Enum</a\n")
-        file.write("<a href='nmap-output/vulns.html' target='iframe_a'>Vulns</a>\n")
-        file.write("<a href='nmap-output/udp.html' target='iframe_a'>UDP</a>\n")
-        file.write("<p align='left'><iframe height='800px' width='800px' name='iframe_a'></iframe></p>\n")
-        file.write("</h3>\n")
-        file.write("</nav>\n")
-        file.write("</body>\n")
-        file.write("</html>\n")
-        file.close()
 
 reportnotes= '''
 [+] TCP/UDP Ports:
@@ -93,6 +54,28 @@ def usage(): #Prints usage of the tool
     print (colored("example: ./furiousrecon 192.168.5.5 targetfolder ",'yellow'))
     sys.exit()
 
+def html_code():    #The HTML page for your report
+    with open(tfolder+"-report.html", "w") as file:
+        file.write("<!DOCTYPE html>\n")
+        file.write("<html>\n")
+        file.write("<title>[*] Host Report for "+tfolder+" [*]</title>\n")
+        file.write("<body>\n")
+        file.write("<h2 align='center''><b>[*]'+tfolder+' - '+thost+' [*]</h></bold>\n")
+        file.write("<nav>\n")
+        file.write("<h3 align='center'>\n")
+        file.write("<a href='nmap-output/ippsec.html' target='iframe_a'>IppSec</a>\n")
+        file.write("<a href='nmap-output/allports.html' target='iframe_a'>All Ports</a>\n")
+        file.write("<a href='nmap-output/service.html' target='iframe_a'>Services</a>\n")
+        file.write("<a href='nmap-output/enum.html' target='iframe_a'>Enum</a\n")
+        file.write("<a href='nmap-output/vulns.html' target='iframe_a'>Vulns</a>\n")
+        file.write("<a href='nmap-output/udp.html' target='iframe_a'>UDP</a>\n")
+        file.write("<p align='left'><iframe height='800px' width='800px' name='iframe_a'></iframe></p>\n")
+        file.write("</h3>\n")
+        file.write("</nav>\n")
+        file.write("</body>\n")
+        file.write("</html>\n")
+        file.close()
+
 def staging(): #Make target folders and files, and change directory into target folder
     os.mkdir(tfolder)
     os.mkdir(tfolder + '/' + 'nmap-output')
@@ -103,7 +86,6 @@ def staging(): #Make target folders and files, and change directory into target 
     print("[+] Current working directory is: " + os.getcwd())
     html_code()
     print ("[+] HTML page created: ")
-
 
 def recon(): #Runs nmap scans
     for scan in scans:
@@ -116,7 +98,7 @@ def report(): #Writes txt file report of initial findings
     os.system('\n')
     os.system('cat nmap-output/udp.nmap |grep "/" |cut -d " " -f 1 >> portlist.txt') 
     with open("report.txt", "w") as file:
-        file.write(tfolder +" - "+ thost )
+        file.write(tfolder +" - "+ thost+)
         file.write("\n")
         os.system("cat portlist.txt |sort -n |uniq >> "+tfolder+"-report.txt")
     with open("report.txt", "a") as report:
