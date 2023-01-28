@@ -26,21 +26,21 @@ udp='nmap -Pn -T4 -sS -sU -v -v -oA nmap-output/udp'
 scans = [ipc,all,svc,enm,vln,udp]
 
 reportnotes= '''
-[+] TCP/UDP Ports:
-[+] Web Recon (directories, robots.txt, etc)
-[+] User Creds discovered (did you find users and/or passwords
-[+] Network Connections (e.g. netstat output)
-[+] Attack Surface (what's in the box and what versions)
-[+] Possible Vulnerabilties (these might work)
-[+] Effective Exploits (these did work)
-[+] Gaining a Foothold (how you found a way in)
-[+] Foothold to Shell (reproduce steps for your shell)
-[+] Host Enumeration (what's on the box)
-[+] Priv Esc to Root (how you got from shell to root)
-[+] proof.txt
-user: 
-root: 
-[+] Post Exploitation
+[+] TCP/UDP Ports:\n
+[+] Web Recon (directories, robots.txt, etc)\n
+[+] User Creds discovered (did you find users and/or passwords\n
+[+] Network Connections (e.g. netstat output)\n
+[+] Attack Surface (what's in the box and what versions)\n
+[+] Possible Vulnerabilties (these might work)\n
+[+] Effective Exploits (these did work)\n
+[+] Gaining a Foothold (how you found a way in)\n
+[+] Foothold to Shell (reproduce steps for your shell)\n
+[+] Host Enumeration (what's on the box)\n
+[+] Priv Esc to Root (how you got from shell to root)\n
+[+] proof.txt\n
+user: \n
+root: \n
+[+] Post Exploitation\n
 '''
 
 def banner(): #Fancy banner for the tool
@@ -50,8 +50,10 @@ def banner(): #Fancy banner for the tool
     print(colored("github.com/n1cfury/FuriousRecon\n", 'yellow'))
 
 def usage(): #Prints usage of the tool
+    print ("")
     print (colored("Usage: ./furiousrecon.sh <ip> <name>", 'yellow'))
     print (colored("example: ./furiousrecon 192.168.5.5 targetfolder ",'yellow'))
+    print ("")
     sys.exit()
 
 def html_code():    #The HTML page for your report

@@ -56,7 +56,7 @@
         "kind": 2,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "def banner(): #Fancy banner for the tool\n    print(colored(\"\\nFuriousRecon - @n1c_Fury\", 'yellow', attrs=['bold']))\n    print(colored(\"Usage: ./recon.sh <ip> <name>\", 'blue'))\n    print(colored(\"Use '-iL path/file' for multiple hosts\", 'blue'))\n    print(colored(\"github.com/n1cfury/FuriousRecon\\n\", 'yellow'))\ndef usage(): #Prints usage of the tool\n    print (colored(\"Usage: ./furiousrecon.sh <ip> <name>\", 'yellow'))\n    print (colored(\"example: ./furiousrecon 192.168.5.5 targetfolder \",'yellow'))\n    sys.exit()\ndef html_code():    #The HTML page for your report",
+        "peekOfCode": "def banner(): #Fancy banner for the tool\n    print(colored(\"\\nFuriousRecon - @n1c_Fury\", 'yellow', attrs=['bold']))\n    print(colored(\"Usage: ./recon.sh <ip> <name>\", 'blue'))\n    print(colored(\"Use '-iL path/file' for multiple hosts\", 'blue'))\n    print(colored(\"github.com/n1cfury/FuriousRecon\\n\", 'yellow'))\ndef usage(): #Prints usage of the tool\n    print (\"\")\n    print (colored(\"Usage: ./furiousrecon.sh <ip> <name>\", 'yellow'))\n    print (colored(\"example: ./furiousrecon 192.168.5.5 targetfolder \",'yellow'))\n    print (\"\")",
         "detail": "furiousrecon",
         "documentation": {}
     },
@@ -65,7 +65,7 @@
         "kind": 2,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "def usage(): #Prints usage of the tool\n    print (colored(\"Usage: ./furiousrecon.sh <ip> <name>\", 'yellow'))\n    print (colored(\"example: ./furiousrecon 192.168.5.5 targetfolder \",'yellow'))\n    sys.exit()\ndef html_code():    #The HTML page for your report\n    with open(tfolder+\"-report.html\", \"w\") as file:\n        file.write(\"<!DOCTYPE html>\\n\")\n        file.write(\"<html>\\n\")\n        file.write(\"<title>[*] Host Report for \"+tfolder+\" [*]</title>\\n\")\n        file.write(\"<body>\\n\")",
+        "peekOfCode": "def usage(): #Prints usage of the tool\n    print (\"\")\n    print (colored(\"Usage: ./furiousrecon.sh <ip> <name>\", 'yellow'))\n    print (colored(\"example: ./furiousrecon 192.168.5.5 targetfolder \",'yellow'))\n    print (\"\")\n    sys.exit()\ndef html_code():    #The HTML page for your report\n    with open(tfolder+\"-report.html\", \"w\") as file:\n        file.write(\"<!DOCTYPE html>\\n\")\n        file.write(\"<html>\\n\")",
         "detail": "furiousrecon",
         "documentation": {}
     },
@@ -146,7 +146,7 @@
         "kind": 5,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "scans = [ipc,all,svc,enm,vln,udp]\nreportnotes= '''\n[+] TCP/UDP Ports:\n[+] Web Recon (directories, robots.txt, etc)\n[+] User Creds discovered (did you find users and/or passwords\n[+] Network Connections (e.g. netstat output)\n[+] Attack Surface (what's in the box and what versions)\n[+] Possible Vulnerabilties (these might work)\n[+] Effective Exploits (these did work)\n[+] Gaining a Foothold (how you found a way in)",
+        "peekOfCode": "scans = [ipc,all,svc,enm,vln,udp]\nreportnotes= '''\n[+] TCP/UDP Ports:\\n\n[+] Web Recon (directories, robots.txt, etc)\\n\n[+] User Creds discovered (did you find users and/or passwords\\n\n[+] Network Connections (e.g. netstat output)\\n\n[+] Attack Surface (what's in the box and what versions)\\n\n[+] Possible Vulnerabilties (these might work)\\n\n[+] Effective Exploits (these did work)\\n\n[+] Gaining a Foothold (how you found a way in)\\n",
         "detail": "furiousrecon",
         "documentation": {}
     }
