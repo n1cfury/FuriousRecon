@@ -92,7 +92,7 @@
         "kind": 2,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "def recon(): #Runs nmap scans\n    for scan in scans:\n        os.system(scan + ' ' + thost)\n        time.sleep(5)\n        os.system(f\"xsltproc nmap-output/\"+scan+\".xml -o nmap-output/\"+scan+\".html\")\ndef report(): #Writes txt file report of initial findings\n    os.system('cat nmap-output/allports.nmap |grep \"/\" |cut -d \" \" -f 1 > portlist.txt')\n    os.system('\\n')\n    os.system('cat nmap-output/udp.nmap |grep \"/\" |cut -d \" \" -f 1 >> portlist.txt') \n    with open(\"report.txt\", \"w\") as file:",
+        "peekOfCode": "def recon(): #Runs nmap scans\n    for scan in scans:\n        os.system(scan + ' ' + thost)\n        time.sleep(5)\n    for sname in snames:\n        os.system(f\"xsltproc nmap-output/\"+scan+\".xml -o nmap-output/\"+scan+\".html\")\ndef report(): #Writes txt file report of initial findings\n    os.system('cat nmap-output/allports.nmap |grep \"/\" |cut -d \" \" -f 1 > portlist.txt\\n')\n    os.system('cat nmap-output/udp.nmap |grep \"/\" |cut -d \" \" -f 1 >> portlist.txt') \n    with open(\"report.txt\", \"w\") as file:",
         "detail": "furiousrecon",
         "documentation": {}
     },
@@ -101,7 +101,7 @@
         "kind": 2,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "def report(): #Writes txt file report of initial findings\n    os.system('cat nmap-output/allports.nmap |grep \"/\" |cut -d \" \" -f 1 > portlist.txt')\n    os.system('\\n')\n    os.system('cat nmap-output/udp.nmap |grep \"/\" |cut -d \" \" -f 1 >> portlist.txt') \n    with open(\"report.txt\", \"w\") as file:\n        file.write(tfolder +\" - \"+ thost)\n        file.write(\"[+] TCP/UDP Ports:\\n\")        \n        os.system(\"cat portlist.txt |sort -n |uniq >> \"+tfolder+\"-report.txt\\n\")\n        file.write(\"[+] Web Recon (directories, robots.txt, etc)\\n\")\n        file.write(\"[+] Attack Surface (Versions and searchsploit findings)\\n\")",
+        "peekOfCode": "def report(): #Writes txt file report of initial findings\n    os.system('cat nmap-output/allports.nmap |grep \"/\" |cut -d \" \" -f 1 > portlist.txt\\n')\n    os.system('cat nmap-output/udp.nmap |grep \"/\" |cut -d \" \" -f 1 >> portlist.txt') \n    with open(\"report.txt\", \"w\") as file:\n        file.write(tfolder +\" - \"+ thost)\n        file.write(\"[+] TCP/UDP Ports:\\n\")        \n        os.system(\"cat portlist.txt |sort -n |uniq >> \"+tfolder+\"-report.txt\\n\")\n        file.write(\"[+] Web Recon (directories, robots.txt, etc)\\n\")\n        file.write(\"[+] Attack Surface (Versions and searchsploit findings)\\n\")\n        file.write(\"[+] Steps to getting a shell\\n\")",
         "detail": "furiousrecon",
         "documentation": {}
     },
@@ -137,7 +137,7 @@
         "kind": 5,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "date_time = now.strftime(\"%B %d %Y %H:%M:%S\")\n#Nmap scans used\nipc='nmap -sC -sV -oA nmap-output/ippsec'\nall='nmap -Pn -p- -v -v --open -oA nmap-output/allports'\nsvc='nmap --open -O -sV -T4 -A -v -v -Pn -oA nmap-output/service'\nenm='nmap -Pn -T4 -A -v -v --script=*vuln* -oA nmap-output/vulns'\nvln='nmap -Pn -T4 -v -v --script=*enum* -oA nmap-output/enum'\nudp='nmap -Pn -T4 -sS -sU -v -v -oA nmap-output/udp'\nscans = [ipc,all,svc,enm,vln,udp]\ndef banner(): #Fancy banner for the tool",
+        "peekOfCode": "date_time = now.strftime(\"%B %d %Y %H:%M:%S\")\n#Nmap scans used\nipc='nmap -sC -sV -oA nmap-output/ippsec'\nall='nmap -Pn -p- -v -v --open -oA nmap-output/allports'\nsvc='nmap --open -O -sV -T4 -A -v -v -Pn -oA nmap-output/service'\nenm='nmap -Pn -T4 -A -v -v --script=*vuln* -oA nmap-output/vulns'\nvln='nmap -Pn -T4 -v -v --script=*enum* -oA nmap-output/enum'\nudp='nmap -Pn -T4 -sS -sU -v -v -oA nmap-output/udp'\nscans = [ipc,all,svc,enm,vln,udp]\nsnames=[\"ippsec\",\"allports\",\"services\",\"vulns\", \"enum\", \"udp\"]",
         "detail": "furiousrecon",
         "documentation": {}
     },
@@ -146,7 +146,7 @@
         "kind": 5,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "scans = [ipc,all,svc,enm,vln,udp]\ndef banner(): #Fancy banner for the tool\n    print(colored(\"\\nFuriousRecon - @n1c_Fury\", 'yellow', attrs=['bold']))\n    print(colored(\"Usage: ./recon.sh <ip> <name>\", 'blue'))\n    print(colored(\"Use '-iL path/file' for multiple hosts\", 'blue'))\n    print(colored(\"github.com/n1cfury/FuriousRecon\\n\", 'yellow'))\ndef usage(): #Prints usage of the tool\n    print (\"\")\n    print (colored(\"Usage: ./furiousrecon.sh <ip> <name>\", 'yellow'))\n    print (colored(\"example: ./furiousrecon 192.168.5.5 targetfolder \",'yellow'))",
+        "peekOfCode": "scans = [ipc,all,svc,enm,vln,udp]\nsnames=[\"ippsec\",\"allports\",\"services\",\"vulns\", \"enum\", \"udp\"]\ndef banner(): #Fancy banner for the tool\n    print(colored(\"\\nFuriousRecon - @n1c_Fury\", 'yellow', attrs=['bold']))\n    print(colored(\"Usage: ./recon.sh <ip> <name>\", 'blue'))\n    print(colored(\"Use '-iL path/file' for multiple hosts\", 'blue'))\n    print(colored(\"github.com/n1cfury/FuriousRecon\\n\", 'yellow'))\ndef usage(): #Prints usage of the tool\n    print (\"\")\n    print (colored(\"Usage: ./furiousrecon.sh <ip> <name>\", 'yellow'))",
         "detail": "furiousrecon",
         "documentation": {}
     }

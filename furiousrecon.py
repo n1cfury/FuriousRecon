@@ -24,8 +24,7 @@ enm='nmap -Pn -T4 -A -v -v --script=*vuln* -oA nmap-output/vulns'
 vln='nmap -Pn -T4 -v -v --script=*enum* -oA nmap-output/enum'
 udp='nmap -Pn -T4 -sS -sU -v -v -oA nmap-output/udp'
 scans = [ipc,all,svc,enm,vln,udp]
-
-
+snames=["ippsec","allports","services","vulns", "enum", "udp"]
 def banner(): #Fancy banner for the tool
     print(colored("\nFuriousRecon - @n1c_Fury", 'yellow', attrs=['bold']))
     print(colored("Usage: ./recon.sh <ip> <name>", 'blue'))
@@ -76,11 +75,11 @@ def recon(): #Runs nmap scans
     for scan in scans:
         os.system(scan + ' ' + thost)
         time.sleep(5)
+    for sname in snames:
         os.system(f"xsltproc nmap-output/"+scan+".xml -o nmap-output/"+scan+".html")
 
 def report(): #Writes txt file report of initial findings
-    os.system('cat nmap-output/allports.nmap |grep "/" |cut -d " " -f 1 > portlist.txt')
-    os.system('\n')
+    os.system('cat nmap-output/allports.nmap |grep "/" |cut -d " " -f 1 > portlist.txt\n')
     os.system('cat nmap-output/udp.nmap |grep "/" |cut -d " " -f 1 >> portlist.txt') 
     with open("report.txt", "w") as file:
         file.write(tfolder +" - "+ thost)
@@ -91,6 +90,7 @@ def report(): #Writes txt file report of initial findings
         file.write("[+] Steps to getting a shell\n")
         file.write("[+] How did you PrivEsc to root\n")
         file.close()
+        print(colored("[+] Report scaffolding completed: ", 'green'))
 
 if __name__ == "__main__":
     banner()
