@@ -25,23 +25,6 @@ vln='nmap -Pn -T4 -v -v --script=*enum* -oA nmap-output/enum'
 udp='nmap -Pn -T4 -sS -sU -v -v -oA nmap-output/udp'
 scans = [ipc,all,svc,enm,vln,udp]
 
-reportnotes= '''
-[+] TCP/UDP Ports:\n
-[+] Web Recon (directories, robots.txt, etc)\n
-[+] User Creds discovered (did you find users and/or passwords\n
-[+] Network Connections (e.g. netstat output)\n
-[+] Attack Surface (what's in the box and what versions)\n
-[+] Possible Vulnerabilties (these might work)\n
-[+] Effective Exploits (these did work)\n
-[+] Gaining a Foothold (how you found a way in)\n
-[+] Foothold to Shell (reproduce steps for your shell)\n
-[+] Host Enumeration (what's on the box)\n
-[+] Priv Esc to Root (how you got from shell to root)\n
-[+] proof.txt\n
-user: \n
-root: \n
-[+] Post Exploitation\n
-'''
 
 def banner(): #Fancy banner for the tool
     print(colored("\nFuriousRecon - @n1c_Fury", 'yellow', attrs=['bold']))
@@ -100,13 +83,14 @@ def report(): #Writes txt file report of initial findings
     os.system('\n')
     os.system('cat nmap-output/udp.nmap |grep "/" |cut -d " " -f 1 >> portlist.txt') 
     with open("report.txt", "w") as file:
-        file.write(tfolder +" - "+ thost+)
-        file.write("\n")
-        os.system("cat portlist.txt |sort -n |uniq >> "+tfolder+"-report.txt")
-    with open("report.txt", "a") as report:
-        for line in reportnotes:
-            file.write(line)
-            file.write("\n")
+        file.write(tfolder +" - "+ thost)
+        file.write("[+] TCP/UDP Ports:\n")        
+        os.system("cat portlist.txt |sort -n |uniq >> "+tfolder+"-report.txt\n")
+        file.write("[+] Web Recon (directories, robots.txt, etc)\n")
+        file.write("[+] Attack Surface (Versions and searchsploit findings)\n")
+        file.write("[+] Steps to getting a shell\n")
+        file.write("[+] How did you PrivEsc to root\n")
+        file.close()
 
 if __name__ == "__main__":
     banner()
@@ -116,14 +100,14 @@ if __name__ == "__main__":
         usage()
     if len(sys.argv) > 3:
         print("")
-        print (colored("Too many arguments. Try again", 'red'))
+        print (colored("Too many arguments. Try again",'red'))
         usage()
     else:
-        print (colored("Recon has started on: "+ date_time, 'green'))
+        print (colored("Recon has started on: "+ date_time,'green'))
         staging()
         recon()
-        print("")
-        print (colored("Scan has completed on : "+ date_time,'green'))
+        report()
+        print (colored("Recon completed on : "+ date_time,'green'))
         print (" |) --- Happy Hunting! ---> ")
         sys.exit()
         
