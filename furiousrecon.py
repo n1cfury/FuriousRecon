@@ -60,10 +60,9 @@ def staging(): #Make target folders and files, and change directory into target 
     os.mkdir(tfolder + '/' + 'images')
     os.mkdir(tfolder + '/' + 'tools')
     os.chdir(tfolder)
-    print ("[+] Working Directories created")
     print("[+] Current working directory is: " + os.getcwd())
     html_code()
-    print ("[+] HTML page created: ")
+    print ("[+] Folder staging completed: ")
 
 def recon(): #Runs nmap scans
     print (colored("Recon has started on: "+ date_time,'green'))

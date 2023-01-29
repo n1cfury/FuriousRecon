@@ -83,7 +83,7 @@
         "kind": 2,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "def staging(): #Make target folders and files, and change directory into target folder\n    os.mkdir(tfolder)\n    os.mkdir(tfolder + '/' + 'nmap-output')\n    os.mkdir(tfolder + '/' + 'images')\n    os.mkdir(tfolder + '/' + 'tools')\n    os.chdir(tfolder)\n    print (\"[+] Working Directories created\")\n    print(\"[+] Current working directory is: \" + os.getcwd())\n    html_code()\n    print (\"[+] HTML page created: \")",
+        "peekOfCode": "def staging(): #Make target folders and files, and change directory into target folder\n    os.mkdir(tfolder)\n    os.mkdir(tfolder + '/' + 'nmap-output')\n    os.mkdir(tfolder + '/' + 'images')\n    os.mkdir(tfolder + '/' + 'tools')\n    os.chdir(tfolder)\n    print(\"[+] Current working directory is: \" + os.getcwd())\n    html_code()\n    print (\"[+] Folder staging completed: \")\ndef recon(): #Runs nmap scans",
         "detail": "furiousrecon",
         "documentation": {}
     },
