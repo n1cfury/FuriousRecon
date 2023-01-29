@@ -7,16 +7,13 @@ import time
 from datetime import datetime
 from termcolor import colored
 
-'''ToDo'''
-#Main Arguments
 thost = (sys.argv(1)) #target host
-tfolder = (sys.argv(2))
+tfolder = (sys.argv(2)) #target folder
 
-#Time check: 
 now = datetime.datetime.now()
-date_time = now.strftime("%B %d %Y %H:%M:%S")
+date_time = now.strftime("%B %d %Y %H:%M:%S") #Time check
 
-#Nmap scans used
+#Nmap scans
 ipc='nmap -sC -sV -oA nmap-output/ippsec'
 all='nmap -Pn -p- -v -v --open -oA nmap-output/allports'
 svc='nmap --open -O -sV -T4 -A -v -v -Pn -oA nmap-output/service'
@@ -32,10 +29,8 @@ def banner(): #Fancy banner for the tool
     print(colored("github.com/n1cfury/FuriousRecon\n", 'yellow'))
 
 def usage(): #Prints usage of the tool
-    print ("")
     print (colored("Usage: ./furiousrecon.sh <ip> <name>", 'yellow'))
-    print (colored("example: ./furiousrecon 192.168.5.5 targetfolder ",'yellow'))
-    print ("")
+    print (colored("example: ./furiousrecon 192.168.5.5 targetfolder\n",'yellow'))
     sys.exit()
 
 def html_code():    #The HTML page for your report
@@ -72,8 +67,9 @@ def staging(): #Make target folders and files, and change directory into target 
     print ("[+] HTML page created: ")
 
 def recon(): #Runs nmap scans
+    print (colored("Recon has started on: "+ date_time,'green'))
     for scan in scans:
-        os.system(scan + ' ' + thost)
+        os.system(scan + ' ' + thost) #runs each scan against the host
         time.sleep(5)
     for sname in snames:
         os.system(f"xsltproc nmap-output/"+scan+".xml -o nmap-output/"+scan+".html")
@@ -95,15 +91,12 @@ def report(): #Writes txt file report of initial findings
 if __name__ == "__main__":
     banner()
     if len(sys.argv) < 3:
-        print("")
         print(colored("Not enough arguments. Try again",'red'))
         usage()
     if len(sys.argv) > 3:
-        print("")
         print (colored("Too many arguments. Try again",'red'))
         usage()
     else:
-        print (colored("Recon has started on: "+ date_time,'green'))
         staging()
         recon()
         report()
@@ -111,4 +104,3 @@ if __name__ == "__main__":
         print (" |) --- Happy Hunting! ---> ")
         sys.exit()
         
-# end main
