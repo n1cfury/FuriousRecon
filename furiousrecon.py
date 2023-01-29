@@ -22,15 +22,14 @@ vln='nmap -Pn -T4 -v -v --script=*enum* -oA nmap-output/enum'
 udp='nmap -Pn -T4 -sS -sU -v -v -oA nmap-output/udp'
 scans = [ipc,all,svc,enm,vln,udp]
 snames=["ippsec","allports","services","vulns", "enum", "udp"]
+
 def banner(): #Fancy banner for the tool
     print(colored("\nFuriousRecon - @n1c_Fury", 'yellow', attrs=['bold']))
     print(colored("Usage: ./recon.sh <ip> <name>", 'blue'))
-    print(colored("Use '-iL path/file' for multiple hosts", 'blue'))
     print(colored("github.com/n1cfury/FuriousRecon\n", 'yellow'))
 
 def usage(): #Prints usage of the tool
-    print (colored("Usage: ./furiousrecon.sh <ip> <name>", 'yellow'))
-    print (colored("example: ./furiousrecon 192.168.5.5 targetfolder\n",'yellow'))
+    print (colored("Usage: ./furiousrecon.sh <ip address> <target name>", 'yellow'))
     sys.exit()
 
 def html_code():    #The HTML page for your report
@@ -90,11 +89,8 @@ def report(): #Writes txt file report of initial findings
 
 if __name__ == "__main__":
     banner()
-    if len(sys.argv) < 3:
-        print(colored("Not enough arguments. Try again",'red'))
-        usage()
-    if len(sys.argv) > 3:
-        print (colored("Too many arguments. Try again",'red'))
+    if len(sys.argv) != 2:
+        print(colored("Insufficient number of arguments. Try again",'red'))
         usage()
     else:
         staging()

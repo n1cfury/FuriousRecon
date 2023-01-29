@@ -56,7 +56,7 @@
         "kind": 2,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "def banner(): #Fancy banner for the tool\n    print(colored(\"\\nFuriousRecon - @n1c_Fury\", 'yellow', attrs=['bold']))\n    print(colored(\"Usage: ./recon.sh <ip> <name>\", 'blue'))\n    print(colored(\"Use '-iL path/file' for multiple hosts\", 'blue'))\n    print(colored(\"github.com/n1cfury/FuriousRecon\\n\", 'yellow'))\ndef usage(): #Prints usage of the tool\n    print (colored(\"Usage: ./furiousrecon.sh <ip> <name>\", 'yellow'))\n    print (colored(\"example: ./furiousrecon 192.168.5.5 targetfolder\\n\",'yellow'))\n    sys.exit()\ndef html_code():    #The HTML page for your report",
+        "peekOfCode": "def banner(): #Fancy banner for the tool\n    print(colored(\"\\nFuriousRecon - @n1c_Fury\", 'yellow', attrs=['bold']))\n    print(colored(\"Usage: ./recon.sh <ip> <name>\", 'blue'))\n    print(colored(\"github.com/n1cfury/FuriousRecon\\n\", 'yellow'))\ndef usage(): #Prints usage of the tool\n    print (colored(\"Usage: ./furiousrecon.sh <ip address> <target name>\", 'yellow'))\n    sys.exit()\ndef html_code():    #The HTML page for your report\n    with open(tfolder+\"-report.html\", \"w\") as file:\n        file.write(\"<!DOCTYPE html>\\n\")",
         "detail": "furiousrecon",
         "documentation": {}
     },
@@ -65,7 +65,7 @@
         "kind": 2,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "def usage(): #Prints usage of the tool\n    print (colored(\"Usage: ./furiousrecon.sh <ip> <name>\", 'yellow'))\n    print (colored(\"example: ./furiousrecon 192.168.5.5 targetfolder\\n\",'yellow'))\n    sys.exit()\ndef html_code():    #The HTML page for your report\n    with open(tfolder+\"-report.html\", \"w\") as file:\n        file.write(\"<!DOCTYPE html>\\n\")\n        file.write(\"<html>\\n\")\n        file.write(\"<title>[*] Host Report for \"+tfolder+\" [*]</title>\\n\")\n        file.write(\"<body>\\n\")",
+        "peekOfCode": "def usage(): #Prints usage of the tool\n    print (colored(\"Usage: ./furiousrecon.sh <ip address> <target name>\", 'yellow'))\n    sys.exit()\ndef html_code():    #The HTML page for your report\n    with open(tfolder+\"-report.html\", \"w\") as file:\n        file.write(\"<!DOCTYPE html>\\n\")\n        file.write(\"<html>\\n\")\n        file.write(\"<title>[*] Host Report for \"+tfolder+\" [*]</title>\\n\")\n        file.write(\"<body>\\n\")\n        file.write(\"<h2 align='center''><b>[*]'+tfolder+' - '+thost+' [*]</h></bold>\\n\")",
         "detail": "furiousrecon",
         "documentation": {}
     },
@@ -146,7 +146,7 @@
         "kind": 5,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "scans = [ipc,all,svc,enm,vln,udp]\nsnames=[\"ippsec\",\"allports\",\"services\",\"vulns\", \"enum\", \"udp\"]\ndef banner(): #Fancy banner for the tool\n    print(colored(\"\\nFuriousRecon - @n1c_Fury\", 'yellow', attrs=['bold']))\n    print(colored(\"Usage: ./recon.sh <ip> <name>\", 'blue'))\n    print(colored(\"Use '-iL path/file' for multiple hosts\", 'blue'))\n    print(colored(\"github.com/n1cfury/FuriousRecon\\n\", 'yellow'))\ndef usage(): #Prints usage of the tool\n    print (colored(\"Usage: ./furiousrecon.sh <ip> <name>\", 'yellow'))\n    print (colored(\"example: ./furiousrecon 192.168.5.5 targetfolder\\n\",'yellow'))",
+        "peekOfCode": "scans = [ipc,all,svc,enm,vln,udp]\nsnames=[\"ippsec\",\"allports\",\"services\",\"vulns\", \"enum\", \"udp\"]\ndef banner(): #Fancy banner for the tool\n    print(colored(\"\\nFuriousRecon - @n1c_Fury\", 'yellow', attrs=['bold']))\n    print(colored(\"Usage: ./recon.sh <ip> <name>\", 'blue'))\n    print(colored(\"github.com/n1cfury/FuriousRecon\\n\", 'yellow'))\ndef usage(): #Prints usage of the tool\n    print (colored(\"Usage: ./furiousrecon.sh <ip address> <target name>\", 'yellow'))\n    sys.exit()\ndef html_code():    #The HTML page for your report",
         "detail": "furiousrecon",
         "documentation": {}
     }
