@@ -71,6 +71,7 @@ def recon(): #Runs nmap scans
         time.sleep(5)
     for sname in snames:
         os.system(f"xsltproc nmap-output/"+scan+".xml -o nmap-output/"+scan+".html")
+    print (colored("Recon completed on : "+ date_time,'green'))
 
 def report(): #Writes txt file report of initial findings
     os.system('cat nmap-output/allports.nmap |grep "/" |cut -d " " -f 1 > portlist.txt\n')
@@ -85,17 +86,17 @@ def report(): #Writes txt file report of initial findings
         file.write("[+] How did you PrivEsc to root\n")
         file.close()
         print(colored("[+] Report scaffolding completed: ", 'green'))
+        print (" |) --- Happy Hunting! ---> ")
 
 if __name__ == "__main__":
     banner()
-    if len(sys.argv) != 2:
-        print(colored("Insufficient number of arguments. Try again",'red'))
-        usage()
-    else:
+    if len(sys.argv) == 2:
         staging()
         recon()
         report()
-        print (colored("Recon completed on : "+ date_time,'green'))
-        print (" |) --- Happy Hunting! ---> ")
         sys.exit()
+    else:
+        print(colored("Insufficient number of arguments. Try again",'red'))
+        usage()
+
         
