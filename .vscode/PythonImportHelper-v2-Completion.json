@@ -1,5 +1,14 @@
 [
     {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
+        "documentation": {}
+    },
+    {
         "label": "os",
         "kind": 6,
         "isExtraImport": true,
@@ -102,6 +111,42 @@
         "importPath": "furiousrecon",
         "description": "furiousrecon",
         "peekOfCode": "def report(): #Writes txt file report of initial findings\n    os.system('cat nmap-output/allports.nmap |grep \"/\" |cut -d \" \" -f 1 > portlist.txt\\n')\n    os.system('cat nmap-output/udp.nmap |grep \"/\" |cut -d \" \" -f 1 >> portlist.txt') \n    with open(\"report.txt\", \"w\") as file:\n        file.write(tfolder +\" - \"+ thost)\n        file.write(\"[+] TCP/UDP Ports:\\n\")        \n        os.system(\"cat portlist.txt |sort -n |uniq >> \"+tfolder+\"-report.txt\\n\")\n        file.write(\"[+] Web Recon (directories, robots.txt, etc)\\n\")\n        file.write(\"[+] Attack Surface (Versions and searchsploit findings)\\n\")\n        file.write(\"[+] Steps to getting a shell\\n\")",
+        "detail": "furiousrecon",
+        "documentation": {}
+    },
+    {
+        "label": "searchresults",
+        "kind": 5,
+        "importPath": "furiousrecon",
+        "description": "furiousrecon",
+        "peekOfCode": "searchresults = []\nsoftware_regex = re.compile(r\"(\\b\\w+)\\s+(\\d+(\\.\\d+)*)\")\nmatches = software_regex.findall(nmap_output)\nmatches.append(searchresults)\n# Write the software versions to a file\nwith open(\"versions.txt\", \"w\") as file:\n    for match in matches:\n        software_name = match[0]\n        version = match[1]\n        file.write(f\"{software_name}: {version}\\n\")",
+        "detail": "furiousrecon",
+        "documentation": {}
+    },
+    {
+        "label": "software_regex",
+        "kind": 5,
+        "importPath": "furiousrecon",
+        "description": "furiousrecon",
+        "peekOfCode": "software_regex = re.compile(r\"(\\b\\w+)\\s+(\\d+(\\.\\d+)*)\")\nmatches = software_regex.findall(nmap_output)\nmatches.append(searchresults)\n# Write the software versions to a file\nwith open(\"versions.txt\", \"w\") as file:\n    for match in matches:\n        software_name = match[0]\n        version = match[1]\n        file.write(f\"{software_name}: {version}\\n\")\nresults = ['Apache 2.4.18', 'PHP 5.6.19']",
+        "detail": "furiousrecon",
+        "documentation": {}
+    },
+    {
+        "label": "matches",
+        "kind": 5,
+        "importPath": "furiousrecon",
+        "description": "furiousrecon",
+        "peekOfCode": "matches = software_regex.findall(nmap_output)\nmatches.append(searchresults)\n# Write the software versions to a file\nwith open(\"versions.txt\", \"w\") as file:\n    for match in matches:\n        software_name = match[0]\n        version = match[1]\n        file.write(f\"{software_name}: {version}\\n\")\nresults = ['Apache 2.4.18', 'PHP 5.6.19']\nfor result in results:",
+        "detail": "furiousrecon",
+        "documentation": {}
+    },
+    {
+        "label": "results",
+        "kind": 5,
+        "importPath": "furiousrecon",
+        "description": "furiousrecon",
+        "peekOfCode": "results = ['Apache 2.4.18', 'PHP 5.6.19']\nfor result in results:\n  os.system(\"searchsploit \" + result+\">> searchsploit.txt\")\n'''\nimport os\nimport sys\nimport glob\nimport time\nfrom datetime import datetime\nfrom termcolor import colored",
         "detail": "furiousrecon",
         "documentation": {}
     },

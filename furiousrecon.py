@@ -1,5 +1,34 @@
 #!/usr/bin/env python
 
+'''ToDo: Add functions for searching using searchsploit
+import re
+import os
+
+# Read the nmap results from a file
+with open("nmap_results.txt", "r") as file:
+    nmap_output = file.read()
+
+# Use regular expressions to find the software versions
+searchresults = []
+software_regex = re.compile(r"(\b\w+)\s+(\d+(\.\d+)*)")
+matches = software_regex.findall(nmap_output)
+matches.append(searchresults)
+
+
+# Write the software versions to a file
+with open("versions.txt", "w") as file:
+    for match in matches:
+        software_name = match[0]
+        version = match[1]
+        file.write(f"{software_name}: {version}\n")
+
+
+results = ['Apache 2.4.18', 'PHP 5.6.19']
+
+for result in results:
+  os.system("searchsploit " + result+">> searchsploit.txt")
+'''
+
 import os
 import sys
 import glob
@@ -98,5 +127,5 @@ if __name__ == "__main__":
     else:
         print(colored("Insufficient number of arguments. Try again",'red'))
         usage()
-
+        
         
