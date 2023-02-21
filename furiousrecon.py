@@ -117,7 +117,7 @@ def report(): #Writes txt file report of initial findings
 
 if __name__ == "__main__":
     banner()
-    if len(sys.argv) == 2:
+    if len(sys.argv) == 3:
         staging()
         recon()
         report()
