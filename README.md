@@ -7,20 +7,20 @@
 
 ###How does this work?
 
-## Usage: ./furiousrecon <target> <foldername>
+##Usage: ./furiousrecon <target> <foldername>
 
-### Requirements: 
+###Requirements: 
   - nmap
   - xsltproc
   - Any web browser
   - Linux/Mac OS
   - Sudo (in some cases)
   
-#### This will also work on subnets, but will take longer.
-#### Most effective against single boxes (typically =< 60 min)
+####This will also work on subnets, but will take longer.
+####Most effective against single boxes (typically =< 60 min)
 
-### Organizes my notes, how so?
-### Creates a folder for all the command output consisting of: 
+###Organizes my notes, how so?
+###Creates a folder for all the command output consisting of: 
 
 - Target name
 - The output from the nmap commands
@@ -30,7 +30,7 @@
 
 
 
-### Running the script, and what to expect.
+###Running the script, and what to expect.
 
 Running with user privileges
 ![Running as a low priv user](https://github.com/n1cfury/FuriousRecon/blob/master/images/asuser.png)
@@ -47,7 +47,7 @@ The HTML page
 The txt file
 ![The text file](https://github.com/n1cfury/FuriousRecon/blob/master/images/textfile.png)
 
-### ToDo's
+###ToDo's
 - Test the -iL argument
 - Add an additional argument for the full path.
 - Figure out threading and get the script to run multiple windows for other tools (nikto, dirb, etc)

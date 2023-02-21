@@ -36,8 +36,8 @@ import time
 from datetime import datetime
 from termcolor import colored
 
-thost = (sys.argv(1)) #target host
-tfolder = (sys.argv(2)) #target folder
+thost = sys.argv[1] # target host
+tfolder = sys.argv[2] # target folder
 
 now = datetime.datetime.now()
 date_time = now.strftime("%B %d %Y %H:%M:%S") #Time check
