@@ -38,9 +38,7 @@ from termcolor import colored
 
 thost = sys.argv[1] # target host
 tfolder = sys.argv[2] # target folder
-
-now = datetime.datetime.now()
-date_time = now.strftime("%B %d %Y %H:%M:%S") #Time check
+now = datetime.now().strftime("%A, %B %d, %Y %H:%M")
 
 #Nmap scans
 ipc='nmap -sC -sV -oA nmap-output/ippsec'
@@ -94,13 +92,13 @@ def staging(): #Make target folders and files, and change directory into target 
     print ("[+] Folder staging completed: ")
 
 def recon(): #Runs nmap scans
-    print (colored("Recon has started on: "+ date_time,'green'))
+    print (colored("Recon has started on: "+ now,'green'))
     for scan in scans:
         os.system(scan + ' ' + thost) #runs each scan against the host
         time.sleep(5)
     for sname in snames:
         os.system(f"xsltproc nmap-output/"+scan+".xml -o nmap-output/"+scan+".html")
-    print (colored("Recon completed on : "+ date_time,'green'))
+    print (colored("Recon completed on : "+ now,'green'))
 
 def report(): #Writes txt file report of initial findings
     os.system('cat nmap-output/allports.nmap |grep "/" |cut -d " " -f 1 > portlist.txt\n')
