@@ -105,7 +105,7 @@ def report(): #Writes txt file report of initial findings
     os.system('cat nmap-output/udp.nmap |grep "/" |cut -d " " -f 1 >> portlist.txt') 
     with open("report.txt", "w") as file:
         file.write(tfolder +" - "+ thost)
-        file.write("[+] TCP/UDP Ports:\n")        
+        file.write("[+] TCP/UDP Ports:\n")
         os.system("cat portlist.txt |sort -n |uniq >> "+tfolder+"-report.txt\n")
         file.write("[+] Web Recon (directories, robots.txt, etc)\n")
         file.write("[+] Attack Surface (Versions and searchsploit findings)\n")
@@ -126,4 +126,4 @@ if __name__ == "__main__":
         print(colored("Insufficient number of arguments. Try again",'red'))
         usage()
         
-        
+    
