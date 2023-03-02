@@ -110,7 +110,7 @@
         "kind": 2,
         "importPath": "furiousrecon",
         "description": "furiousrecon",
-        "peekOfCode": "def report(): #Writes txt file report of initial findings\n    os.system('cat nmap-output/allports.nmap |grep \"/\" |cut -d \" \" -f 1 > portlist.txt\\n')\n    os.system('cat nmap-output/udp.nmap |grep \"/\" |cut -d \" \" -f 1 >> portlist.txt') \n    with open(\"report.txt\", \"w\") as file:\n        file.write(tfolder +\" - \"+ thost)\n        file.write(\"[+] TCP/UDP Ports:\\n\")        \n        os.system(\"cat portlist.txt |sort -n |uniq >> \"+tfolder+\"-report.txt\\n\")\n        file.write(\"[+] Web Recon (directories, robots.txt, etc)\\n\")\n        file.write(\"[+] Attack Surface (Versions and searchsploit findings)\\n\")\n        file.write(\"[+] Steps to getting a shell\\n\")",
+        "peekOfCode": "def report(): #Writes txt file report of initial findings\n    os.system('cat nmap-output/allports.nmap |grep \"/\" |cut -d \" \" -f 1 > portlist.txt\\n')\n    os.system('cat nmap-output/udp.nmap |grep \"/\" |cut -d \" \" -f 1 >> portlist.txt') \n    with open(\"report.txt\", \"w\") as file:\n        file.write(tfolder +\" - \"+ thost)\n        file.write(\"[+] TCP/UDP Ports:\\n\")\n        os.system(\"cat portlist.txt |sort -n |uniq >> \"+tfolder+\"-report.txt\\n\")\n        file.write(\"[+] Web Recon (directories, robots.txt, etc)\\n\")\n        file.write(\"[+] Attack Surface (Versions and searchsploit findings)\\n\")\n        file.write(\"[+] Steps to getting a shell\\n\")",
         "detail": "furiousrecon",
         "documentation": {}
     },
