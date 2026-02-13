@@ -62,7 +62,7 @@ nmap -Pn -T4 -v -v --script=*enum* -oA nmap-output/enum $1 1> /dev/null; #nmap f
 sleep 5;
 xsltproc nmap-output/enum.xml -o nmap-output/enum.html;
 echo "$WTE[6] Running HTTP Scan...";
-nmap -Pn -T4 -p- --script=*http* -v -v -oA nmap-output/web $1 1> /dev/null; #nmap for udp scans
+nmap -Pn -T4 -sV -p 80,443,8000,8080,8443,8888,9000 --script=banner,http-robots.txt,http-headers,http-comments-displayer -v -v -oA nmap-output/web $1 1> /dev/null; #nmap for udp scans
 sleep 5;
 xsltproc nmap-output/web.xml -o nmap-output/web.html;
 echo "$GRN[*] Creating Report Note file..."; #Creates txt file for findings
@@ -88,12 +88,13 @@ echo "root: " >> $2-report.txt;
 echo "[+] Post Exploitation" >> $2-report.txt;
 echo "$YLW[*] Fixing working folder ownership: $2 -> $3";
 sudo chown -R "$3:$3" "$2";
-echo "$YLW[!] Recon Completed.  |) --- Happy Hunting $3! --->";
+echo "$YLW;
 echo "$YLW[!] Here is your folder layout  ";
 echo "$YLW[!]	$2 Main target folder.";
-echo "$YLW[!] 		$2/nmap-output The nmap scans.";
-echo "$YLW[!] 		$2/tools Exploits used.";
-echo "$YLW[!] 		$2/images Screenshots.";
-echo "$YLW[!] 		$2/loot What you find";
+echo "$YLW[!] 	  $2/nmap-output ----> The nmap scans. ";
+echo "$YLW[!] 	  $2/tools       ----> Exploits used.  ";
+echo "$YLW[!] 	  $2/images      ----> Screenshots.    ";
+echo "$YLW[!] 	  $2/loot        ----> What you find.  ";
 echo "$RED ";
+echo "$RED [!] Recon Completed.  | --- Happy Hunting $3! --->";
 date;
